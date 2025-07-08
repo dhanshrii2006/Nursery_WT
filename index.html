@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Plant Rescue - Save Plants, Build Community</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="emergency-ticker">
+    <div class="ticker-content">
+      URGENT: 23 plants need rescue today! • 5 new rescues in your area • 12 plants expire in 2 hours • Join 847 plant heroes today!
+    </div>
+  </div>
+
+  <header>
+    <div class="header-content">
+      <div class="logo">Plant Rescue</div>
+      <div class="search-container">
+        <input type="text" class="search-bar" placeholder="Search plants, nurseries, or species...">
+      </div>
+      <div class="user-profile">
+        <span>My Rescues</span>
+        <div class="profile-icon">👤</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="main-container">
+    <aside class="sidebar">
+      <div class="filter-section">
+        <h3 class="filter-title">Plant Type</h3>
+        <div class="filter-options">
+          <label class="filter-option"><input type="checkbox" checked><span>Indoor Plants</span></label>
+          <label class="filter-option"><input type="checkbox"><span>Outdoor Plants</span></label>
+          <label class="filter-option"><input type="checkbox"><span>Succulents</span></label>
+          <label class="filter-option"><input type="checkbox"><span>Flowers</span></label>
+          <label class="filter-option"><input type="checkbox"><span>Herbs</span></label>
+        </div>
+      </div>
+
+      <div class="filter-section">
+        <h3 class="filter-title">Size</h3>
+        <div class="filter-options">
+          <label class="filter-option"><input type="checkbox"><span>Small</span></label>
+          <label class="filter-option"><input type="checkbox" checked><span>Medium</span></label>
+          <label class="filter-option"><input type="checkbox"><span>Large</span></label>
+        </div>
+      </div>
+
+      <div class="filter-section">
+        <h3 class="filter-title">Care Level</h3>
+        <div class="filter-options">
+          <label class="filter-option"><input type="checkbox" checked><span>Beginner</span></label>
+          <label class="filter-option"><input type="checkbox"><span>Intermediate</span></label>
+          <label class="filter-option"><input type="checkbox"><span>Expert</span></label>
+        </div>
+      </div>
+
+      <div class="filter-section">
+        <h3 class="filter-title">Urgency</h3>
+        <div class="filter-options">
+          <label class="filter-option"><input type="checkbox" checked><span>Next 24 hours</span></label>
+          <label class="filter-option"><input type="checkbox"><span>This week</span></label>
+          <label class="filter-option"><input type="checkbox"><span>This month</span></label>
+        </div>
+      </div>
+
+      <div class="filter-section">
+        <h3 class="filter-title">My Rescues</h3>
+        <div class="filter-options">
+          <p>You have rescued 5 plants this week.</p>
+          <p><a href="#">View your rescue history</a></p>
+        </div>
+      </div>
+    </aside>
+
+    <main class="plant-grid">
+      <!-- Repeat plant card -->
+      <div class="plant-card">
+        <div class="plant-image">🌿<div class="rescue-badge urgent">URGENT</div></div>
+        <div class="plant-info">
+          <h3 class="plant-name">Golden Pothos</h3>
+          <p class="plant-species">Epipremnum aureum</p>
+          <div class="plant-details">
+            <div class="care-level"><div class="care-dot active"></div><div class="care-dot"></div><div class="care-dot"></div></div>
+            <div class="plant-size">Medium</div>
+          </div>
+          <div class="plant-status">
+            <div class="status-icon urgent"></div>
+            <span class="timer urgent-text">2h 30m left</span>
+          </div>
+          <div class="nursery-info"><span class="nursery-name">Green Valley Nursery</span> • 0.8 miles</div>
+          <div class="price-action">
+            <div class="free-rescue">FREE RESCUE</div>
+            <button class="rescue-btn">Rescue Now</button>
+          </div>
+        </div>
+      </div>
+      <!-- Add more cards as needed -->
+    </main>
+  </div>
+</body>
+</html>
