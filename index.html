@@ -372,7 +372,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </main>
     </div>
 </body>
@@ -380,26 +380,37 @@
 </html>
 
 <!--
-structure of the HTML file:
-head section with meta tags, title, and links to external resources like Google Fonts and CSS
-body section with an emergency ticker, header, sidebar, and main content area
-body has div elements for emergency ticker, header, sidebar, and main content
-header contains logo, search bar, and user profile section
-flow chart of the HTML file:
-- head
-  - meta tags
-  - title
-  - link to Google Fonts
-  - link to external CSS
-- body
-  - emergency ticker
-  - header
-    - logo
-    - search bar
-    - user profile
-  - main container
-    - sidebar
-    - main content area
+flowchart of the HTML file:
 
+html
+    ├── head
+    │   ├── meta charset
+    │   ├── meta viewport
+    │   ├── title
+    │   ├── link to Google Font
+    │   └── link to external CSS
+    └── body
+        ├── emergency-ticker 
+        │   └── ticker-content
+        ├── header
+        │   ├── header-content
+        │   │   ├── logo
+        │   │   ├── search-container
+        │   │   └── user-profile
+        ├── main-container
+        │   ├── sidebar
+        │   │   └── filter-section plant-type
+        │   └── plant-grid (multiple plant-cards)
 
+        └── plant-card (multiple)
+            ├── plant-image
+            ├── plant-info
+            │   ├── plant-name
+            │   ├── plant-species
+            │   ├── plant-details
+            │   ├── plant-status
+            │   ├── nursery-info
+            │   └── price-action
+
+      
 -->
