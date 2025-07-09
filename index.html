@@ -58,36 +58,51 @@
     plants for rescue.
     -->
 
+
+    <!--
+    asides are used to create a sidebar section that contains filters for plant type, size, care level, urgency, and rescue history.
+    this attribute groups related elements like <div> within the sidebar section
+      aside contains classes for filter sections, each with a title and options.
+      class "filter-section" is used to style each filter section, and "filter-title" is used for the title of each section.
+      "filter-options" class is used to style the options within each filter section.
+      label elements are used to create checkboxes for each filter option, allowing users to select multiple options.
+    -->
+
     <div class="main-container">
 
-
-      
         <aside class="sidebar">
 
             <div class="filter-section">    
 
                 <h3 class="filter-title">Plant Type</h3>
+
                 <div class="filter-options">
+
                     <label class="filter-option">
                         <input type="checkbox" checked>
                         <span>Indoor Plants</span>
                     </label>
+
                     <label class="filter-option">
                         <input type="checkbox">
                      =   <span>Outdoor Plants</span>
                     </label>
+
                     <label class="filter-option">
                         <input type="checkbox">
                         <span>Succulents</span>
                     </label>
+
                     <label class="filter-option">
                         <input type="checkbox">
                         <span>Flowers</span>
                     </label>
+
                     <label class="filter-option">
                         <input type="checkbox">
                         <span>Herbs</span>
                     </label>
+
                 </div>
             </div>
 
