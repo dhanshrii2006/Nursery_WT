@@ -6,7 +6,7 @@
             background-color: #f0f8f0;
         }
 
-     
+        /* Emergency Ticker */
         .emergency-ticker {
             background: linear-gradient(90deg, #d69e2e, #ed8936);
             color: white;
@@ -142,7 +142,7 @@
         /* Plant Grid */
         .plant-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
         }
 
@@ -164,7 +164,7 @@
         .plant-image {
             width: 100%;
             height: 200px;
-            background: linear-gradient(45deg, #68d391, #48bb78, #38a169);
+            background: linear-gradit(45deg, #68d391, #48bb78, #38a169);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -225,6 +225,7 @@
 
         .care-dot.active { background: #48bb78; }
 
+      
         .plant-size {
             font-size: 0.9rem;
             color: #4a5568;

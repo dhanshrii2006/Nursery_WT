@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Plant Rescue - Save Plants, Build Community</title>
+
+    <!-- Import Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet"> 
+    <!-- syntax to include links -->
+
+    <!-- ✅ Link to External CSS -->
+    <link rel="stylesheet" href="check.css">
+</head>
+
+<body>
+    <div class="emergency-ticker">
+        <div class="ticker-content">
+            URGENT: 23 plants need rescue today! • 5 new rescues in your area • 12 plants expire in 2 hours • Join 847 plant heroes today!
+        </div>
+    </div>
+
+    <header>
+        <div class="header-content">
+
+            <div class="logo">
+                Plant Rescue
+            </div>
+
+
+            <div class="search-container">
+                <input type="text" class="search-bar" placeholder="Search plants, nurseries, or species...">
+            </div>
+
+            <div class="user-profile">
+                <span>My Rescues</span>
+                <div class="profile-icon">👤</div>
+            </div>
+
+        </div>
+    <!-- diffrent classes in a single class is used organize header as diffrent sections
+        and to apply styles to each section separately.
+        div class is used to group related elements 
+        -->
+    </header>
+    <!-- 
+    header attribute groups related elements like <div> within the header section
+    -->
+
+    <!-- 
+    main container holds the main content of the page 
+    and is divided into two sections: sidebar and plant grid.
+    The sidebar contains filters for plant type, size, care level, urgency, and rescue history
+    The plant grid displays individual plant cards with details like name, species, care level, size, status, nursery info, and action buttons.
+    The sidebar allows users to filter plants based on their preferences, while the plant grid showcases available
+    plants for rescue.
+    -->
+
+
+    <!--
+    asides are used to create a sidebar section that contains filters for plant type, size, care level, urgency, and rescue history.
+    this attribute groups related elements like <div> within the sidebar section
+      aside contains classes for filter sections, each with a title and options.
+      class "filter-section" is used to style each filter section, and "filter-title" is used for the title of each section.
+      "filter-options" class is used to style the options within each filter section.
+      label elements are used to create checkboxes for each filter option, allowing users to select multiple options.
+    -->
+
+    <!-- 
+    the flowchart of filter section is as follows:
+    filter-section
+        ├── filter-title
+        └── filter-options
+            ├── filter-option (multiple)
+                ├── input (checkbox)
+                └── span (option label)
+    -->
+
+    <div class="main-container">
+
+        <aside class="sidebar">
+
+            <div class="filter-section">    
+
+                <h3 class="filter-title">Plant Type</h3>
+
+                <div class="filter-options">
+
+                    <label class="filter-option">
+                        <input type="checkbox" checked>
+                        <span>Indoor Plants</span>
+                    </label>
+
+                    <label class="filter-option">
+                        <input type="checkbox">
+                     =   <span>Outdoor Plants</span>
+                    </label>
+
+                    <label class="filter-option">
+                        <input type="checkbox">
+                        <span>Succulents</span>
+                    </label>
+
+                    <label class="filter-option">
+                        <input type="checkbox">
+                        <span>Flowers</span>
+                    </label>
+
+                    <label class="filter-option">
+                        <input type="checkbox">
+                        <span>Herbs</span>
+                    </label>
+
+                </div>
+            </div>
+
+            <div class="filter-section">
+
+                <h3 class="filter-title">Size</h3>
+
+                <div class="filter-options">
+
+                    <label class="filter-option">
+                        <input type="checkbox">
+                        <span>Small</span>
+                    </label>
+
+                    <label class="filter-option">
+                        <input type="checkbox" checked>
+                        <span>Medium</span>
+                    </label>
+
+                    <label class="filter-option">
+                        <input type="checkbox">
+                        <span>Large</span>
+                    </label>
+
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <h3 class="filter-title">Care Level</h3>
+                <div class="filter-options">
+                    <label class="filter-option">
+                        <input type="checkbox" checked>
+                        <span>Beginner</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox">
+                        <span>Intermediate</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox">
+                        <span>Expert</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <h3 class="filter-title">Urgency</h3>
+                <div class="filter-options">
+                    <label class="filter-option">
+                        <input type="checkbox" checked>
+                        <span>Next 24 hours</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox">
+                        <span>This week</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox">
+                        <span>This month</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <h3 class="filter-title">My Rescues</h3>
+                <div class="filter-options">
+                    <p>You have rescued 5 plants this week.</p>
+                    <p><a href="#">View your rescue history</a></p>
+                </div>
+            </div>
+
+        </aside>
+
+<!-- 
+ inside main container, aside class is used for sidebar section and main class is used for plant grid section because it contains the main content area where the plant cards are displayed and in general, the main class is used to style the main content area of the page and aside class is used to style the sidebar section.
+-->
+
+        <main class="plant-grid">
+
+
+
+            <div class="plant-card">
+                <div class="plant-image">
+                    🌿
+                    <div class="rescue-badge urgent">URGENT</div>
+                </div>
+                <div class="plant-info">
+                    <h3 class="plant-name">Golden Pothos</h3>
+                    <p class="plant-species">Epipremnum aureum</p>
+                    <div class="plant-details">
+                        <div class="care-level">
+                            <div class="care-dot active"></div>
+                            <div class="care-dot"></div>
+                            <div class="care-dot"></div>
+                        </div>
+                        <div class="plant-size">Medium</div>
+                    </div>
+                    <div class="plant-status">
+                        <div class="status-icon urgent"></div>
+                        <span class="timer urgent-text">2h 30m left</span>
+                    </div>
+                    <div class="nursery-info">
+                        <span class="nursery-name">Green Valley Nursery</span> • 0.8 miles
+                    </div>
+                    <div class="price-action">
+                        <div class="free-rescue">FREE RESCUE</div>
+                        <button class="rescue-btn">Rescue Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="plant-card">
+                <div class="plant-image">
+                    🌵
+                    <div class="rescue-badge warning">24H LEFT</div>
+                </div>
+                <div class="plant-info">
+                    <h3 class="plant-name">Snake Plant</h3>
+                    <p class="plant-species">Sansevieria trifasciata</p>
+                    <div class="plant-details">
+                        <div class="care-level">
+                            <div class="care-dot active"></div>
+                            <div class="care-dot"></div>
+                            <div class="care-dot"></div>
+                        </div>
+                        <div class="plant-size">Large</div>
+                    </div>
+                    <div class="plant-status">
+                        <div class="status-icon warning"></div>
+                        <span class="timer warning-text">18h 45m left</span>
+                    </div>
+                    <div class="nursery-info">
+                        <span class="nursery-name">Bloom & Grow</span> • 1.2 miles
+                    </div>
+                    <div class="price-action">
+                        <div class="price-tag">$8</div>
+                        <button class="rescue-btn">Rescue Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="plant-card">
+                <div class="plant-image">
+                    🌸
+                    <div class="rescue-badge safe">AVAILABLE</div>
+                </div>
+                <div class="plant-info">
+                    <h3 class="plant-name">Peace Lily</h3>
+                    <p class="plant-species">Spathiphyllum wallisii</p>
+                    <div class="plant-details">
+                        <div class="care-level">
+                            <div class="care-dot active"></div>
+                            <div class="care-dot active"></div>
+                            <div class="care-dot"></div>
+                        </div>
+                        <div class="plant-size">Medium</div>
+                    </div>
+                    <div class="plant-status">
+                        <div class="status-icon safe"></div>
+                        <span class="timer safe-text">5 days left</span>
+                    </div>
+                    <div class="nursery-info">
+                        <span class="nursery-name">Plant Paradise</span> • 2.1 miles
+                    </div>
+                    <div class="price-action">
+                        <div class="price-tag">$12</div>
+                        <button class="rescue-btn">Rescue Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="plant-card">
+                <div class="plant-image">
+                    🌱
+                    <div class="rescue-badge urgent">URGENT</div>
+                </div>
+                <div class="plant-info">
+                    <h3 class="plant-name">Monstera Deliciosa</h3>
+                    <p class="plant-species">Monstera deliciosa</p>
+                    <div class="plant-details">
+                        <div class="care-level">
+                            <div class="care-dot active"></div>
+                            <div class="care-dot active"></div>
+                            <div class="care-dot"></div>
+                        </div>
+                        <div class="plant-size">Large</div>
+                    </div>
+                    <div class="plant-status">
+                        <div class="status-icon urgent"></div>
+                        <span class="timer urgent-text">4h 15m left</span>
+                    </div>
+                    <div class="nursery-info">
+                        <span class="nursery-name">Tropical Gardens</span> • 0.5 miles
+                    </div>
+                    <div class="price-action">
+                        <div class="price-tag">$15</div>
+                        <button class="rescue-btn">Rescue Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="plant-card">
+                <div class="plant-image">
+                    🌿
+                    <div class="rescue-badge warning">12H LEFT</div>
+                </div>
+                <div class="plant-info">
+                    <h3 class="plant-name">Rubber Plant</h3>
+                    <p class="plant-species">Ficus elastica</p>
+                    <div class="plant-details">
+                        <div class="care-level">
+                            <div class="care-dot active"></div>
+                            <div class="care-dot"></div>
+                            <div class="care-dot"></div>
+                        </div>
+                        <div class="plant-size">Medium</div>
+                    </div>
+                    <div class="plant-status">
+                        <div class="status-icon warning"></div>
+                        <span class="timer warning-text">12h 20m left</span>
+                    </div>
+                    <div class="nursery-info">
+                        <span class="nursery-name">Green Thumb Co.</span> • 1.8 miles
+                    </div>
+                    <div class="price-action">
+                        <div class="free-rescue">FREE RESCUE</div>
+                        <button class="rescue-btn">Rescue Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="plant-card">
+                <div class="plant-image">
+                    🌺
+                    <div class="rescue-badge safe">AVAILABLE</div>
+                </div>
+                <div class="plant-info">
+                    <h3 class="plant-name">Fiddle Leaf Fig</h3>
+                    <p class="plant-species">Ficus lyrata</p>
+                    <div class="plant-details">
+                        <div class="care-level">
+                            <div class="care-dot active"></div>
+                            <div class="care-dot active"></div>
+                            <div class="care-dot active"></div>
+                        </div>
+                        <div class="plant-size">Large</div>
+                    </div>
+                    <div class="plant-status">
+                        <div class="status-icon safe"></div>
+                        <span class="timer safe-text">3 days left</span>
+                    </div>
+                    <div class="nursery-info">
+                        <span class="nursery-name">Urban Jungle</span> • 2.5 miles
+                    </div>
+                    <div class="price-action">
+                        <div class="price-tag">$25</div>
+                        <button class="rescue-btn">Rescue Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="plant-card">
+                <div class="plant-image">
+                    🌿
+                    <div class="rescue-badge warning">6H LEFT</div>
+                </div>
+                <div class="plant-info">
+                    <h3 class="plant-name">Spider Plant</h3>
+                    <p class="plant-species">Chlorophytum comosum</p>
+                    <div class="plant-details">
+                        <div class="care-level">
+                            <div class="care-dot active"></div>
+                            <div class="care-dot"></div>
+                            <div class="care-dot"></div>
+                        </div>
+                        <div class="plant-size">Small</div>
+                    </div>
+                    <div class="plant-status">
+                        <div class="status-icon warning"></div>
+                        <span class="timer warning-text">6h 10m left</span>
+                    </div>
+                    <div class="nursery-info">
+                        <span class="nursery-name">Leaf & Bloom</span> • 1.0 miles
+                    </div>
+                    <div class="price-action">
+                        <div class="price-tag">$5</div>
+                        <button class="rescue-btn">Rescue Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="plant-card">
+                <div class="plant-image">
+                    🌱
+                    <div class="rescue-badge safe">AVAILABLE</div>
+                </div>
+                <div class="plant-info">
+                    <h3 class="plant-name">ZZ Plant</h3>
+                    <p class="plant-species">Zamioculcas zamiifolia</p>
+                    <div class="plant-details">
+                        <div class="care-level">
+                            <div class="care-dot active"></div>
+                            <div class="care-dot"></div>
+                            <div class="care-dot"></div>
+                        </div>
+                        <div class="plant-size">Medium</div>
+                    </div>
+                    <div class="plant-status">
+                        <div class="status-icon safe"></div>
+                        <span class="timer safe-text">1 week left</span>
+                    </div>
+                    <div class="nursery-info">
+                        <span class="nursery-name">Nature's Best</span> • 0.7 miles
+                    </div>
+                    <div class="price-action">
+                        <div class="price-tag">$10</div>
+                        <button class="rescue-btn">Rescue Now</button>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+
+    </div>
+</body>
+
+</html>
+
+<!--
+flowchart of the HTML file:
+
+html
+    ├── head
+    │   ├── meta charset
+    │   ├── meta viewport
+    │   ├── title
+    │   ├── link to Google Font
+    │   └── link to external CSS
+    └── body
+        ├── emergency-ticker 
+        │   └── ticker-content
+        ├── header
+        │   ├── header-content
+        │   │   ├── logo
+        │   │   ├── search-container
+        │   │   └── user-profile
+        ├── main-container
+        │   ├── sidebar
+        │   │   └── filter-section plant-type
+        │   └── plant-grid (multiple plant-cards)
+
+        └── plant-card (multiple)
+            ├── plant-image
+            ├── plant-info
+            │   ├── plant-name
+            │   ├── plant-species
+            │   ├── plant-details
+            │   ├── plant-status
+            │   ├── nursery-info
+            │   └── price-action
+
+      
+-->
+
+<!-- WORK LEFT UNDERSTANDING GRID STRUCTURE -->
