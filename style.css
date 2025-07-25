@@ -210,6 +210,13 @@ header {
   background: rgba(0, 0, 0, 0.8);
 }
 
+.arrow-left {
+  left: 10px;
+}
+
+.arrow-right {
+  right: 10px;
+}
 
 .rescue-badge {
   position: absolute;
