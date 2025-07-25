@@ -90,10 +90,50 @@ header {
 
 /* Sidebar (Placeholder) */
 .sidebar {
-    background: white;
-    padding: 2rem;
-    border-radius: 20px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+  background: white;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+  height: fit-content;
+  border: 2px solid #e6fffa;
+}
+
+.filter-section {
+  margin-bottom: 2rem;
+}
+
+.filter-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2f855a;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.filter-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.filter-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.filter-option:hover {
+  background: #f0fff4;
+}
+
+.filter-option input[type="checkbox"] {
+  accent-color: #48bb78;
 }
 
 /* Plant Grid */
