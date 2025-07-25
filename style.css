@@ -240,7 +240,19 @@ header {
 }
 
 .plant-info {
-  padding: 1.5rem;
+  padding: 1.75rem; /* Increased padding for a spacious feel */
+  display: flex; /* Flexbox for left/right alignment */
+  justify-content: space-between; /* Space between left and right groups */
+  gap: 1rem; /* Gap between left and right */
+  background: linear-gradient(180deg, #f0fff4 0%, #ffffff 100%); /* Subtle green-to-white gradient */
+  border-radius: 0 0 20px 20px; /* Match card's rounded corners */
+}
+
+.info-left {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  gap: 0.75rem; /* Consistent spacing between elements */
+  width: 55%; /* Slightly reduced to balance with right side */
 }
 
 .plant-name {
@@ -256,6 +268,8 @@ header {
   margin-bottom: 1rem;
 }
 
+
+
 .plant-details {
   display: flex;
   justify-content: space-between;
@@ -265,7 +279,7 @@ header {
 
 .care-level {
   display: flex;
-  gap: 2px;
+  gap: 3px;
 }
 
 .care-dot {
@@ -318,19 +332,22 @@ header {
 .nursery-info {
   font-size: 0.9rem;
   color: #4a5568;
-  margin-bottom: 1rem;
+  margin-left: 10px; /* Indentation for alignment */
 }
 
 .nursery-name {
   font-weight: 500;
-  color: #2f855a;
+  color: #2f855a; /* Green accent */
 }
 
 .price-action {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  gap: 0.5rem; /* Space between buttons */
+  align-items: center; /* Center buttons vertically */
 }
+
+
+
 
 .price-tag {
   font-size: 1.2rem;
@@ -339,28 +356,55 @@ header {
 }
 
 .free-rescue {
-  color: #e53e3e;
-  background: #fed7d7;
-  padding: 5px 10px;
-  border-radius: 10px;
-  font-size: 0.9rem;
+  background: #2b6cb0; /* Blue for contrast, distinct from urgent red */
+  color: white;
+  font-size: 0.8rem; /* Smaller font for subtlety */
+  font-weight: 500;
+  padding: 6px 12px; /* Compact padding */
+  border-radius: 10px; /* Slightly smaller radius */
+  width: 40%; /* Specific width as requested */
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover */
+}
+
+.free-rescue:hover {
+  transform: scale(1.03); /* Subtle scale */
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1); /* Light shadow */
 }
 
 .rescue-btn {
-  background: #48bb78;
+  background: #2f855a; /* Dark green to match theme */
   color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 15px;
-  cursor: pointer;
+  font-size: 0.9rem; /* Larger font for prominence */
   font-weight: 500;
-  font-family: "Open Sans", sans-serif;
-  transition: all 0.3s;
+  padding: 8px 16px; /* Larger padding */
+  border: none;
+  border-radius: 10px;
+  width: 55%; /* Takes remaining space */
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover */
 }
 
 .rescue-btn:hover {
-  background: #38a169;
-  transform: scale(1.05);
+  transform: scale(1.03); /* Subtle scale */
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1); /* Light shadow */
+  background: #276749; /* Darker green on hover */
+}
+
+/* Right-Side Elements */
+.info-right {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  gap: 0.5rem; /* Tighter spacing for compact look */
+  width: 40%; /* Balanced with left side */
+  align-items: flex-end; /* Right-align for natural flow */
+}
+
+.conditions {
+  font-size: 1rem; /* Clear but not overpowering */
+  font-weight: 600;
+  color: #2f855a; /* Green to match theme */
+  margin: 0;
 }
 
 /* Responsive */
