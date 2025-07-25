@@ -4,518 +4,1089 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plant Rescue - Save Plants, Build Community</title>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="final .css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2f855a;
+            --primary-light: #38a169;
+            --secondary: #319795;
+            --accent: #ed8936;
+            --light: #f0fff4;
+            --dark: #2d3748;
+            --gray: #718096;
+            --light-gray: #e2e8f0;
+            --white: #ffffff;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --radius: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, #e6fffa 0%, #f0fff4 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding-bottom: 2rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Emergency Ticker */
+        .emergency-ticker {
+            background: linear-gradient(90deg, var(--accent), #dd6b20);
+            color: white;
+            padding: 0.75rem 0;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ticker-content {
+            animation: ticker 30s linear infinite;
+            white-space: nowrap;
+            display: inline-block;
+            padding-left: 100%;
+        }
+
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            padding: 1.25rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            color: #ffd700;
+        }
+
+        .search-container {
+            flex: 1;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 0.9rem 1.5rem 0.9rem 3rem;
+            border-radius: 50px;
+            border: none;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--dark);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-bar::placeholder {
+            color: var(--gray);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1.25rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+
+        .user-profile span {
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .profile-icon {
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .profile-icon:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        /* Main Layout */
+        .main-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1.75rem;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .sidebar h2 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--light);
+            font-size: 1.5rem;
+        }
+
+        .filter-section {
+            margin-bottom: 1.75rem;
+        }
+
+        .filter-section h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .filter-section h3 i {
+            color: var(--primary);
+        }
+
+        .filter-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .filter-option {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .filter-option input {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+        }
+
+        .filter-option label {
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+
+        .price-range {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-top: 0.5rem;
+        }
+
+        .price-range input {
+            flex: 1;
+        }
+
+        .price-values {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-top: 0.5rem;
+        }
+
+        .distance-filter {
+            margin-top: 0.5rem;
+        }
+
+        .distance-filter select {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 8px;
+            border: 1px solid var(--light-gray);
+            background: var(--white);
+            font-size: 0.95rem;
+            margin-top: 0.5rem;
+        }
+
+        .apply-filters {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.9rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .apply-filters:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        .stats {
+            background: var(--light);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-top: 1.5rem;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+        }
+
+        .stat-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .stat-label {
+            font-weight: 500;
+        }
+
+        .stat-value {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Plant Grid */
+        .plant-grid-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .plant-grid-header h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.75rem;
+            color: var(--primary);
+        }
+
+        .sort-options select {
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--light-gray);
+            background: var(--white);
+            font-size: 0.95rem;
+        }
+
+        .plant-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        /* Plant Card */
+        .plant-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .plant-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .plant-image {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+
+        .slide.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .arrow:hover {
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .arrow-left {
+            left: 15px;
+        }
+
+        .arrow-right {
+            right: 15px;
+        }
+
+        .rescue-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: white;
+            animation: pulse 1.5s infinite;
+            z-index: 5;
+        }
+
+        .urgent {
+            background: #e53e3e;
+        }
+
+        .warning {
+            background: #d69e2e;
+        }
+
+        .safe {
+            background: #38a169;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .plant-info {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .plant-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .plant-name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin: 0 0 0.25rem 0;
+        }
+
+        .plant-species {
+            font-size: 0.95rem;
+            color: var(--gray);
+            margin: 0;
+            font-style: italic;
+        }
+
+        .nursery-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .nursery-name {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .price-distance {
+            text-align: right;
+        }
+
+        .price-tag {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .distance {
+            font-size: 0.9rem;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 0.3rem;
+        }
+
+        .plant-details {
+            display: flex;
+            justify-content: space-between;
+            margin: 1.25rem 0;
+            padding: 1rem;
+            background: var(--light);
+            border-radius: 12px;
+        }
+
+        .condition-section {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .conditions {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .care-level {
+            display: flex;
+            gap: 0.3rem;
+        }
+
+        .care-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--light-gray);
+        }
+
+        .care-dot.active {
+            background: var(--primary-light);
+        }
+
+        .plant-size {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .plant-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            margin-top: auto;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            background: var(--light);
+            border-radius: 50px;
+            overflow: hidden;
+        }
+
+        .quantity-btn {
+            width: 36px;
+            height: 36px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .quantity-btn:hover {
+            background: var(--primary-light);
+        }
+
+        .quantity-value {
+            min-width: 40px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .rescue-btn {
+            background: var(--primary);
+            color: white;
+            font-size: 1rem;
+            font-weight: 700;
+            padding: 0.9rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .rescue-btn:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(47, 133, 90, 0.3);
+        }
+
+        .free-rescue {
+            background: var(--secondary);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1100px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                position: static;
+                margin-bottom: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .plant-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            .search-container {
+                max-width: 100%;
+                width: 100%;
+            }
+            
+            .plant-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .price-distance {
+                text-align: left;
+            }
+            
+            .plant-details {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .plant-actions {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .plant-grid {
+                gap: 1.5rem;
+            }
+            
+            .plant-image {
+                height: 180px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="emergency-ticker">
         <div class="ticker-content">
-            URGENT: 23 plants need rescue today! • 5 new rescues in your area • 12 plants expire in 2 hours • Join 847 plant heroes today!
+            🚨 URGENT: 23 plants need rescue today! • 🌱 5 new rescues in your area • ⏰ 12 plants expire in 2 hours • 👤 Join 847 plant heroes today!
         </div>
     </div>
+    
     <header>
-        <div class="header-content">
-            <div class="logo">Plant Rescue</div>
-            <div class="search-container">
-                <input type="text" class="search-bar" placeholder="Search plants, nurseries, or species...">
-            </div>
-            <div class="user-profile">
-                <span>My Rescues</span>
-                <div class="profile-icon">👤</div>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-seedling"></i>
+                    Plant Rescue
+                </div>
+                <div class="search-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" class="search-bar" placeholder="Search plants, nurseries, or species...">
+                </div>
+                <div class="user-profile">
+                    <span>My Rescues</span>
+                    <div class="profile-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
-    <div class="main-container">
-        <aside class="sidebar">
-          <div class="filter-section">
-
-                <h3 class="filter-title">Plant Type</h3>
-
-                <div class="filter-options">
-
-                    <label class="filter-option">
-                        <input type="checkbox" checked>
-                        <span>Indoor Plants</span>
-                    </label>
-
-                    <label class="filter-option">
-                        <input type="checkbox">
-                        = <span>Outdoor Plants</span>
-                    </label>
-
-                    <label class="filter-option">
-                        <input type="checkbox">
-                        <span>Succulents</span>
-                    </label>
-
-                    <label class="filter-option">
-                        <input type="checkbox">
-                        <span>Flowers</span>
-                    </label>
-
-                    <label class="filter-option">
-                        <input type="checkbox">
-                        <span>Herbs</span>
-                    </label>
-
-                </div>
-            </div>
-
-            <div class="filter-section">
-
-                <h3 class="filter-title">Size</h3>
-
-                <div class="filter-options">
-
-                    <label class="filter-option">
-                        <input type="checkbox">
-                        <span>Small</span>
-                    </label>
-
-                    <label class="filter-option">
-                        <input type="checkbox" checked>
-                        <span>Medium</span>
-                    </label>
-
-                    <label class="filter-option">
-                        <input type="checkbox">
-                        <span>Large</span>
-                    </label>
-
-                </div>
-            </div>
-
-            <div class="filter-section">
-                <h3 class="filter-title">Care Level</h3>
-                <div class="filter-options">
-                    <label class="filter-option">
-                        <input type="checkbox" checked>
-                        <span>Beginner</span>
-                    </label>
-                    <label class="filter-option">
-                        <input type="checkbox">
-                        <span>Intermediate</span>
-                    </label>
-                    <label class="filter-option">
-                        <input type="checkbox">
-                        <span>Expert</span>
-                    </label>
-                </div>
-            </div>
-
-            <div class="filter-section">
-                <h3 class="filter-title">Urgency</h3>
-                <div class="filter-options">
-                    <label class="filter-option">
-                        <input type="checkbox" checked>
-                        <span>Next 24 hours</span>
-                    </label>
-                    <label class="filter-option">
-                        <input type="checkbox">
-                        <span>This week</span>
-                    </label>
-                    <label class="filter-option">
-                        <input type="checkbox">
-                        <span>This month</span>
-                    </label>
-                </div>
-            </div>
-
-            <div class="filter-section">
-                <h3 class="filter-title">My Rescues</h3>
-                <div class="filter-options">
-                    <p>You have rescued 5 plants this week.</p>
-                    <p><a href="#">View your rescue history</a></p>
-                </div>
-            </div>
-
-        </aside>
-        <main class="plant-grid">
-            <!-- Golden Pothos -->
-            <div class="plant-card">
-                <div class="plant-image">
-                    <div class="slideshow-container" data-slide-index="0">
-                        <img src="Nursery_WT/src/plant1.jpeg" alt="Golden Pothos" class="slide active">
-                        <img src="Nursery_WT/src/plant2.jpg" alt="Golden Pothos" class="slide">
-                        <img src="Nursery_WT/src/plant3.jpeg" alt="Golden Pothos" class="slide">
-                        <img src="Nursery_WT/src/plant4.jpeg" alt="Golden Pothos" class="slide">
-                        <button class="arrow arrow-left">◄</button>
-                        <button class="arrow arrow-right">►</button>
-                        <div class="rescue-badge urgent">URGENT</div>
+    
+    <div class="container">
+        <div class="main-container">
+            <aside class="sidebar">
+                <h2>Filters</h2>
+                
+                <div class="filter-section">
+                    <h3><i class="fas fa-tag"></i> Price Range</h3>
+                    <div class="price-range">
+                        <span>$0</span>
+                        <input type="range" min="0" max="50" value="25" class="slider">
+                        <span>$50</span>
+                    </div>
+                    <div class="price-values">
+                        <span>Min: $0</span>
+                        <span>Max: $25</span>
                     </div>
                 </div>
-                <div class="plant-info">
-                    <div class="info-row">
-                        <div class="info-left">
-                            <h3 class="plant-name">Golden Pothos</h3>
-                            <p class="plant-species">Epipremnum aureum</p>
-                            <div class="nursery-info">
-                                <span class="nursery-name">Green Valley Nursery</span>
-                            </div>
+                
+                <div class="filter-section">
+                    <h3><i class="fas fa-leaf"></i> Plant Type</h3>
+                    <div class="filter-options">
+                        <div class="filter-option">
+                            <input type="checkbox" id="indoor" checked>
+                            <label for="indoor">Indoor Plants</label>
                         </div>
-                        <div class="info-right">
-                            <div class="price-distance">
-                                <span class="price-tag">FREE</span>
-                                <span class="distance">0.8 miles</span>
-                            </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="outdoor">
+                            <label for="outdoor">Outdoor Plants</label>
                         </div>
-                    </div>
-                    <div class="info-row">
-                        <div class="info-left">
-                            <h4 class="conditions">Condition:</h4>
-                            <div class="care-level">
-                                <div class="care-dot active"></div>
-                                <div class="care-dot"></div>
-                                <div class="care-dot"></div>
-                            </div>
-                            <div class="plant-size">Medium</div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="succulents">
+                            <label for="succulents">Succulents</label>
                         </div>
-                        <div class="info-right">
-                            <div class="price-action">
-                                <div class="free-rescue">FREE RESCUE</div>
-                                <button class="rescue-btn">Rescue Now</button>
-                            </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="flowers">
+                            <label for="flowers">Flowering Plants</label>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- Snake Plant -->
-            <div class="plant-card">
-                <div class="plant-image">
-                    <div class="slideshow-container" data-slide-index="0">
-                        <img src="Nursery_WT/src/plant1.jpeg" alt="Snake Plant" class="slide active">
-                        <img src="Nursery_WT/src/plant2.jpg" alt="Snake Plant" class="slide">
-                        <img src="Nursery_WT/src/plant3.jpeg" alt="Snake Plant" class="slide">
-                        <img src="Nursery_WT/src/plant4.jpeg" alt="Snake Plant" class="slide">
-                        <button class="arrow arrow-left">◄</button>
-                        <button class="arrow arrow-right">►</button>
-                        <div class="rescue-badge warning">24H LEFT</div>
+                
+                <div class="filter-section">
+                    <h3><i class="fas fa-map-marker-alt"></i> Distance</h3>
+                    <div class="distance-filter">
+                        <select>
+                            <option>Within 5 miles</option>
+                            <option selected>Within 10 miles</option>
+                            <option>Within 20 miles</option>
+                            <option>Any distance</option>
+                        </select>
                     </div>
                 </div>
-                <div class="plant-info">
-                    <div class="info-row">
-                        <div class="info-left">
-                            <h3 class="plant-name">Snake Plant</h3>
-                            <p class="plant-species">Sansevieria trifasciata</p>
-                            <div class="nursery-info">
-                                <span class="nursery-name">Bloom & Grow</span>
-                            </div>
+                
+                <div class="filter-section">
+                    <h3><i class="fas fa-heart"></i> Condition</h3>
+                    <div class="filter-options">
+                        <div class="filter-option">
+                            <input type="checkbox" id="excellent">
+                            <label for="excellent">Excellent</label>
                         </div>
-                        <div class="info-right">
-                            <div class="price-distance">
-                                <span class="price-tag">$8</span>
-                                <span class="distance">1.2 miles</span>
-                            </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="good" checked>
+                            <label for="good">Good</label>
                         </div>
-                    </div>
-                    <div class="info-row">
-                        <div class="info-left">
-                            <h4 class="conditions">Condition:</h4>
-                            <div class="care-level">
-                                <div class="care-dot active"></div>
-                                <div class="care-dot"></div>
-                                <div class="care-dot"></div>
-                            </div>
-                            <div class="plant-size">Large</div>
-                        </div>
-                        <div class="info-right">
-                            <div class="price-action">
-                                <div class="free-rescue">FREE RESCUE</div>
-                                <button class="rescue-btn">Rescue Now</button>
-                            </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="fair">
+                            <label for="fair">Fair</label>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- Peace Lily -->
-            <div class="plant-card">
-                <div class="plant-image">
-                    <div class="slideshow-container" data-slide-index="0">
-                        <img src="Nursery_WT/src/plant1.jpeg" alt="Peace Lily" class="slide active">
-                        <img src="Nursery_WT/src/plant2.jpg" alt="Peace Lily" class="slide">
-                        <img src="Nursery_WT/src/plant3.jpeg" alt="Peace Lily" class="slide">
-                        <img src="Nursery_WT/src/plant4.jpeg" alt="Peace Lily" class="slide">
-                        <button class="arrow arrow-left">◄</button>
-                        <button class="arrow arrow-right">►</button>
-                        <div class="rescue-badge safe">AVAILABLE</div>
+                
+                <button class="apply-filters">Apply Filters</button>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Plants Available:</span>
+                        <span class="stat-value">142</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Rescued Today:</span>
+                        <span class="stat-value">23</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Active Heroes:</span>
+                        <span class="stat-value">847</span>
                     </div>
                 </div>
-                <div class="plant-info">
-                    <div class="info-row">
-                        <div class="info-left">
-                            <h3 class="plant-name">Peace Lily</h3>
-                            <p class="plant-species">Spathiphyllum wallisii</p>
-                            <div class="nursery-info">
-                                <span class="nursery-name">Plant Paradise</span>
-                            </div>
-                        </div>
-                        <div class="info-right">
-                            <div class="price-distance">
-                                <span class="price-tag">$12</span>
-                                <span class="distance">2.1 miles</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="info-row">
-                        <div class="info-left">
-                            <h4 class="conditions">Condition:</h4>
-                            <div class="care-level">
-                                <div class="care-dot active"></div>
-                                <div class="care-dot active"></div>
-                                <div class="care-dot"></div>
-                            </div>
-                            <div class="plant-size">Medium</div>
-                        </div>
-                        <div class="info-right">
-                            <div class="price-action">
-                                <div class="free-rescue">FREE RESCUE</div>
-                                <button class="rescue-btn">Rescue Now</button>
-                            </div>
-                        </div>
+            </aside>
+            
+            <main>
+                <div class="plant-grid-header">
+                    <h2>Available Plants for Rescue</h2>
+                    <div class="sort-options">
+                        <select>
+                            <option>Sort by: Urgency</option>
+                            <option>Sort by: Distance</option>
+                            <option>Sort by: Price</option>
+                            <option>Sort by: Name</option>
+                        </select>
                     </div>
                 </div>
-            </div>
-            <!-- Monstera Deliciosa -->
-            <div class="plant-card">
-                <div class="plant-image">
-                    <div class="slideshow-container" data-slide-index="0">
-                        <img src="Nursery_WT/src/plant1.jpeg" alt="Monstera Deliciosa" class="slide active">
-                        <img src="Nursery_WT/src/plant2.jpg" alt="Monstera Deliciosa" class="slide">
-                        <img src="Nursery_WT/src/plant3.jpeg" alt="Monstera Deliciosa" class="slide">
-                        <img src="Nursery_WT/src/plant4.jpeg" alt="Monstera Deliciosa" class="slide">
-                        <button class="arrow arrow-left">◄</button>
-                        <button class="arrow arrow-right">►</button>
-                        <div class="rescue-badge urgent">URGENT</div>
-                    </div>
-                </div>
-                <div class="plant-info">
-                    <div class="info-row">
-                        <div class="info-left">
-                            <h3 class="plant-name">Monstera Deliciosa</h3>
-                            <p class="plant-species">Monstera deliciosa</p>
-                            <div class="nursery-info">
-                                <span class="nursery-name">Tropical Gardens</span>
+                
+                <div class="plant-grid">
+                    <!-- Golden Pothos -->
+                    <div class="plant-card">
+                        <div class="plant-image">
+                            <div class="slideshow-container" data-slide-index="0">
+                                <img src="https://placehold.co/600x400/48bb78/FFFFFF?text=Golden+Pothos" alt="Golden Pothos" class="slide active">
+                                <img src="https://placehold.co/600x400/38a169/FFFFFF?text=Golden+Pothos+2" alt="Golden Pothos" class="slide">
+                                <img src="https://placehold.co/600x400/2f855a/FFFFFF?text=Golden+Pothos+3" alt="Golden Pothos" class="slide">
+                                <button class="arrow arrow-left">◄</button>
+                                <button class="arrow arrow-right">►</button>
+                                <div class="rescue-badge urgent">URGENT</div>
                             </div>
                         </div>
-                        <div class="info-right">
-                            <div class="price-distance">
-                                <span class="price-tag">$15</span>
-                                <span class="distance">0.5 miles</span>
+                        <div class="plant-info">
+                            <div class="plant-header">
+                                <div>
+                                    <h3 class="plant-name">Golden Pothos</h3>
+                                    <p class="plant-species">Epipremnum aureum</p>
+                                    <div class="nursery-info">
+                                        <i class="fas fa-store"></i>
+                                        <span class="nursery-name">Green Valley Nursery</span>
+                                    </div>
+                                </div>
+                                <div class="price-distance">
+                                    <div class="price-tag">FREE</div>
+                                    <div class="distance"><i class="fas fa-map-marker-alt"></i> 0.8 miles</div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="info-row">
-                        <div class="info-left">
-                            <h4 class="conditions">Condition:</h4>
-                            <div class="care-level">
-                                <div class="care-dot active"></div>
-                                <div class="care-dot active"></div>
-                                <div class="care-dot"></div>
+                            
+                            <div class="plant-details">
+                                <div class="condition-section">
+                                    <h4 class="conditions"><i class="fas fa-heart"></i> Condition:</h4>
+                                    <div class="care-level">
+                                        <div class="care-dot active"></div>
+                                        <div class="care-dot"></div>
+                                        <div class="care-dot"></div>
+                                    </div>
+                                    <div class="plant-size">Medium</div>
+                                </div>
+                                <div class="free-rescue">
+                                    <i class="fas fa-gift"></i> FREE RESCUE
+                                </div>
                             </div>
-                            <div class="plant-size">Large</div>
-                        </div>
-                        <div class="info-right">
-                            <div class="price-action">
-                                <div class="free-rescue">FREE RESCUE</div>
-                                <button class="rescue-btn">Rescue Now</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Rubber Plant -->
-            <div class="plant-card">
-                <div class="plant-image">
-                    <div class="slideshow-container" data-slide-index="0">
-                        <img src="Nursery_WT/src/plant1.jpeg" alt="Rubber Plant" class="slide active">
-                        <img src="Nursery_WT/src/plant2.jpg" alt="Rubber Plant" class="slide">
-                        <img src="Nursery_WT/src/plant3.jpeg" alt="Rubber Plant" class="slide">
-                        <img src="Nursery_WT/src/plant4.jpeg" alt="Rubber Plant" class="slide">
-                        <button class="arrow arrow-left">◄</button>
-                        <button class="arrow arrow-right">►</button>
-                        <div class="rescue-badge warning">12H LEFT</div>
-                    </div>
-                </div>
-                <div class="plant-info">
-                    <div class="info-row">
-                        <div class="info-left">
-                            <h3 class="plant-name">Rubber Plant</h3>
-                            <p class="plant-species">Ficus elastica</p>
-                            <div class="nursery-info">
-                                <span class="nursery-name">Green Thumb Co.</span>
-                            </div>
-                        </div>
-                        <div class="info-right">
-                            <div class="price-distance">
-                                <span class="price-tag">FREE</span>
-                                <span class="distance">1.8 miles</span>
+                            
+                            <div class="plant-actions">
+                                <div class="quantity-control">
+                                    <button class="quantity-btn minus" onclick="changeQuantity(this, -1)">-</button>
+                                    <span class="quantity-value">1</span>
+                                    <button class="quantity-btn plus" onclick="changeQuantity(this, 1)">+</button>
+                                </div>
+                                <button class="rescue-btn">
+                                    <i class="fas fa-hands-helping"></i> Rescue Now
+                                </button>
                             </div>
                         </div>
                     </div>
-                    <div class="info-row">
-                        <div class="info-left">
-                            <h4 class="conditions">Condition:</h4>
-                            <div class="care-level">
-                                <div class="care-dot active"></div>
-                                <div class="care-dot"></div>
-                                <div class="care-dot"></div>
+                    
+                    <!-- Snake Plant -->
+                    <div class="plant-card">
+                        <div class="plant-image">
+                            <div class="slideshow-container" data-slide-index="0">
+                                <img src="https://placehold.co/600x400/319795/FFFFFF?text=Snake+Plant" alt="Snake Plant" class="slide active">
+                                <img src="https://placehold.co/600x400/2c7a7b/FFFFFF?text=Snake+Plant+2" alt="Snake Plant" class="slide">
+                                <img src="https://placehold.co/600x400/285e61/FFFFFF?text=Snake+Plant+3" alt="Snake Plant" class="slide">
+                                <button class="arrow arrow-left">◄</button>
+                                <button class="arrow arrow-right">►</button>
+                                <div class="rescue-badge warning">24H LEFT</div>
                             </div>
-                            <div class="plant-size">Medium</div>
                         </div>
-                        <div class="info-right">
-                            <div class="price-action">
-                                <div class="free-rescue">FREE RESCUE</div>
-                                <button class="rescue-btn">Rescue Now</button>
+                        <div class="plant-info">
+                            <div class="plant-header">
+                                <div>
+                                    <h3 class="plant-name">Snake Plant</h3>
+                                    <p class="plant-species">Sansevieria trifasciata</p>
+                                    <div class="nursery-info">
+                                        <i class="fas fa-store"></i>
+                                        <span class="nursery-name">Bloom & Grow</span>
+                                    </div>
+                                </div>
+                                <div class="price-distance">
+                                    <div class="price-tag">$8</div>
+                                    <div class="distance"><i class="fas fa-map-marker-alt"></i> 1.2 miles</div>
+                                </div>
+                            </div>
+                            
+                            <div class="plant-details">
+                                <div class="condition-section">
+                                    <h4 class="conditions"><i class="fas fa-heart"></i> Condition:</h4>
+                                    <div class="care-level">
+                                        <div class="care-dot active"></div>
+                                        <div class="care-dot"></div>
+                                        <div class="care-dot"></div>
+                                    </div>
+                                    <div class="plant-size">Large</div>
+                                </div>
+                                <div class="free-rescue">
+                                    <i class="fas fa-gift"></i> FREE RESCUE
+                                </div>
+                            </div>
+                            
+                            <div class="plant-actions">
+                                <div class="quantity-control">
+                                    <button class="quantity-btn minus" onclick="changeQuantity(this, -1)">-</button>
+                                    <span class="quantity-value">1</span>
+                                    <button class="quantity-btn plus" onclick="changeQuantity(this, 1)">+</button>
+                                </div>
+                                <button class="rescue-btn">
+                                    <i class="fas fa-hands-helping"></i> Rescue Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Peace Lily -->
+                    <div class="plant-card">
+                        <div class="plant-image">
+                            <div class="slideshow-container" data-slide-index="0">
+                                <img src="https://placehold.co/600x400/ed8936/FFFFFF?text=Peace+Lily" alt="Peace Lily" class="slide active">
+                                <img src="https://placehold.co/600x400/dd6b20/FFFFFF?text=Peace+Lily+2" alt="Peace Lily" class="slide">
+                                <img src="https://placehold.co/600x400/c05621/FFFFFF?text=Peace+Lily+3" alt="Peace Lily" class="slide">
+                                <button class="arrow arrow-left">◄</button>
+                                <button class="arrow arrow-right">►</button>
+                                <div class="rescue-badge safe">AVAILABLE</div>
+                            </div>
+                        </div>
+                        <div class="plant-info">
+                            <div class="plant-header">
+                                <div>
+                                    <h3 class="plant-name">Peace Lily</h3>
+                                    <p class="plant-species">Spathiphyllum wallisii</p>
+                                    <div class="nursery-info">
+                                        <i class="fas fa-store"></i>
+                                        <span class="nursery-name">Plant Paradise</span>
+                                    </div>
+                                </div>
+                                <div class="price-distance">
+                                    <div class="price-tag">$12</div>
+                                    <div class="distance"><i class="fas fa-map-marker-alt"></i> 2.1 miles</div>
+                                </div>
+                            </div>
+                            
+                            <div class="plant-details">
+                                <div class="condition-section">
+                                    <h4 class="conditions"><i class="fas fa-heart"></i> Condition:</h4>
+                                    <div class="care-level">
+                                        <div class="care-dot active"></div>
+                                        <div class="care-dot active"></div>
+                                        <div class="care-dot"></div>
+                                    </div>
+                                    <div class="plant-size">Medium</div>
+                                </div>
+                                <div class="free-rescue">
+                                    <i class="fas fa-gift"></i> FREE RESCUE
+                                </div>
+                            </div>
+                            
+                            <div class="plant-actions">
+                                <div class="quantity-control">
+                                    <button class="quantity-btn minus" onclick="changeQuantity(this, -1)">-</button>
+                                    <span class="quantity-value">1</span>
+                                    <button class="quantity-btn plus" onclick="changeQuantity(this, 1)">+</button>
+                                </div>
+                                <button class="rescue-btn">
+                                    <i class="fas fa-hands-helping"></i> Rescue Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Monstera Deliciosa -->
+                    <div class="plant-card">
+                        <div class="plant-image">
+                            <div class="slideshow-container" data-slide-index="0">
+                                <img src="https://placehold.co/600x400/2f855a/FFFFFF?text=Monstera" alt="Monstera Deliciosa" class="slide active">
+                                <img src="https://placehold.co/600x400/38a169/FFFFFF?text=Monstera+2" alt="Monstera Deliciosa" class="slide">
+                                <img src="https://placehold.co/600x400/48bb78/FFFFFF?text=Monstera+3" alt="Monstera Deliciosa" class="slide">
+                                <button class="arrow arrow-left">◄</button>
+                                <button class="arrow arrow-right">►</button>
+                                <div class="rescue-badge urgent">URGENT</div>
+                            </div>
+                        </div>
+                        <div class="plant-info">
+                            <div class="plant-header">
+                                <div>
+                                    <h3 class="plant-name">Monstera Deliciosa</h3>
+                                    <p class="plant-species">Monstera deliciosa</p>
+                                    <div class="nursery-info">
+                                        <i class="fas fa-store"></i>
+                                        <span class="nursery-name">Tropical Gardens</span>
+                                    </div>
+                                </div>
+                                <div class="price-distance">
+                                    <div class="price-tag">$15</div>
+                                    <div class="distance"><i class="fas fa-map-marker-alt"></i> 0.5 miles</div>
+                                </div>
+                            </div>
+                            
+                            <div class="plant-details">
+                                <div class="condition-section">
+                                    <h4 class="conditions"><i class="fas fa-heart"></i> Condition:</h4>
+                                    <div class="care-level">
+                                        <div class="care-dot active"></div>
+                                        <div class="care-dot active"></div>
+                                        <div class="care-dot"></div>
+                                    </div>
+                                    <div class="plant-size">Large</div>
+                                </div>
+                                <div class="free-rescue">
+                                    <i class="fas fa-gift"></i> FREE RESCUE
+                                </div>
+                            </div>
+                            
+                            <div class="plant-actions">
+                                <div class="quantity-control">
+                                    <button class="quantity-btn minus" onclick="changeQuantity(this, -1)">-</button>
+                                    <span class="quantity-value">1</span>
+                                    <button class="quantity-btn plus" onclick="changeQuantity(this, 1)">+</button>
+                                </div>
+                                <button class="rescue-btn">
+                                    <i class="fas fa-hands-helping"></i> Rescue Now
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- Fiddle Leaf Fig -->
-            <div class="plant-card">
-                <div class="plant-image">
-                    <div class="slideshow-container" data-slide-index="0">
-                        <img src="Nursery_WT/src/plant1.jpeg" alt="Fiddle Leaf Fig" class="slide active">
-                        <img src="Nursery_WT/src/plant2.jpg" alt="Fiddle Leaf Fig" class="slide">
-                        <img src="Nursery_WT/src/plant3.jpeg" alt="Fiddle Leaf Fig" class="slide">
-                        <img src="Nursery_WT/src/plant4.jpeg" alt="Fiddle Leaf Fig" class="slide">
-                        <button class="arrow arrow-left">◄</button>
-                        <button class="arrow arrow-right">►</button>
-                        <div class="rescue-badge safe">AVAILABLE</div>
-                    </div>
-                </div>
-                <div class="plant-info">
-                    <div class="info-row">
-                        <div class="info-left">
-                            <h3 class="plant-name">Fiddle Leaf Fig</h3>
-                            <p class="plant-species">Ficus lyrata</p>
-                            <div class="nursery-info">
-                                <span class="nursery-name">Urban Jungle</span>
-                            </div>
-                        </div>
-                        <div class="info-right">
-                            <div class="price-distance">
-                                <span class="price-tag">$25</span>
-                                <span class="distance">2.5 miles</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="info-row">
-                        <div class="info-left">
-                            <h4 class="conditions">Condition:</h4>
-                            <div class="care-level">
-                                <div class="care-dot active"></div>
-                                <div class="care-dot active"></div>
-                                <div class="care-dot active"></div>
-                            </div>
-                            <div class="plant-size">Large</div>
-                        </div>
-                        <div class="info-right">
-                            <div class="price-action">
-                                <div class="free-rescue">FREE RESCUE</div>
-                                <button class="rescue-btn">Rescue Now</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Spider Plant -->
-            <div class="plant-card">
-                <div class="plant-image">
-                    <div class="slideshow-container" data-slide-index="0">
-                        <img src="Nursery_WT/src/plant1.jpeg" alt="Spider Plant" class="slide active">
-                        <img src="Nursery_WT/src/plant2.jpg" alt="Spider Plant" class="slide">
-                        <img src="Nursery_WT/src/plant3.jpeg" alt="Spider Plant" class="slide">
-                        <img src="Nursery_WT/src/plant4.jpeg" alt="Spider Plant" class="slide">
-                        <button class="arrow arrow-left">◄</button>
-                        <button class="arrow arrow-right">►</button>
-                        <div class="rescue-badge warning">6H LEFT</div>
-                    </div>
-                </div>
-                <div class="plant-info">
-                    <div class="info-row">
-                        <div class="info-left">
-                            <h3 class="plant-name">Spider Plant</h3>
-                            <p class="plant-species">Chlorophytum comosum</p>
-                            <div class="nursery-info">
-                                <span class="nursery-name">Leaf & Bloom</span>
-                            </div>
-                        </div>
-                        <div class="info-right">
-                            <div class="price-distance">
-                                <span class="price-tag">$5</span>
-                                <span class="distance">1.0 miles</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="info-row">
-                        <div class="info-left">
-                            <h4 class="conditions">Condition:</h4>
-                            <div class="care-level">
-                                <div class="care-dot active"></div>
-                                <div class="care-dot"></div>
-                                <div class="care-dot"></div>
-                            </div>
-                            <div class="plant-size">Small</div>
-                        </div>
-                        <div class="info-right">
-                            <div class="price-action">
-                                <div class="free-rescue">FREE RESCUE</div>
-                                <button class="rescue-btn">Rescue Now</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- ZZ Plant -->
-            <div class="plant-card">
-                <div class="plant-image">
-                    <div class="slideshow-container" data-slide-index="0">
-                        <img src="Nursery_WT/src/plant1.jpeg" alt="ZZ Plant" class="slide active">
-                        <img src="Nursery_WT/src/plant2.jpg" alt="ZZ Plant" class="slide">
-                        <img src="Nursery_WT/src/plant3.jpeg" alt="ZZ Plant" class="slide">
-                        <img src="Nursery_WT/src/plant4.jpeg" alt="ZZ Plant" class="slide">
-                        <button class="arrow arrow-left">◄</button>
-                        <button class="arrow arrow-right">►</button>
-                        <div class="rescue-badge safe">AVAILABLE</div>
-                    </div>
-                </div>
-                <div class="plant-info">
-                    <div class="info-row">
-                        <div class="info-left">
-                            <h3 class="plant-name">ZZ Plant</h3>
-                            <p class="plant-species">Zamioculcas zamiifolia</p>
-                            <div class="nursery-info">
-                                <span class="nursery-name">Nature's Best</span>
-                            </div>
-                        </div>
-                        <div class="info-right">
-                            <div class="price-distance">
-                                <span class="price-tag">$10</span>
-                                <span class="distance">0.7 miles</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="info-row">
-                        <div class="info-left">
-                            <h4 class="conditions">Condition:</h4>
-                            <div class="care-level">
-                                <div class="care-dot active"></div>
-                                <div class="care-dot"></div>
-                                <div class="care-dot"></div>
-                            </div>
-                            <div class="plant-size">Medium</div>
-                        </div>
-                        <div class="info-right">
-                            <div class="price-action">
-                                <div class="free-rescue">FREE RESCUE</div>
-                                <button class="rescue-btn">Rescue Now</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
+            </main>
+        </div>
     </div>
+
+    <script>
+        // Slideshow functionality
+        document.querySelectorAll('.slideshow-container').forEach(container => {
+            const slides = container.querySelectorAll('.slide');
+            const leftArrow = container.querySelector('.arrow-left');
+            const rightArrow = container.querySelector('.arrow-right');
+            let currentIndex = 0;
+            
+            function showSlide(index) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                slides[index].classList.add('active');
+            }
+            
+            leftArrow.addEventListener('click', () => {
+                currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1;
+                showSlide(currentIndex);
+            });
+            
+            rightArrow.addEventListener('click', () => {
+                currentIndex = (currentIndex < slides.length - 1) ? currentIndex + 1 : 0;
+                showSlide(currentIndex);
+            });
+        });
+        
+        // Quantity control functionality
+        function changeQuantity(button, change) {
+            const control = button.closest('.quantity-control');
+            const valueElement = control.querySelector('.quantity-value');
+            let value = parseInt(valueElement.textContent);
+            
+            value += change;
+            
+            // Ensure value is between 1 and 99
+            if (value < 1) value = 1;
+            if (value > 99) value = 99;
+            
+            valueElement.textContent = value;
+        }
+        
+        // Rescue button functionality
+        document.querySelectorAll('.rescue-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const card = this.closest('.plant-card');
+                const plantName = card.querySelector('.plant-name').textContent;
+                const quantity = card.querySelector('.quantity-value').textContent;
+                
+                alert(`Rescuing ${quantity} ${plantName}(s)! Thank you for saving a plant!`);
+            });
+        });
+    </script>
 </body>
 </html>
