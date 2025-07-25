@@ -296,9 +296,8 @@ header {
 .plant-size {
   font-size: 0.9rem;
   color: #4a5568;
-  background: #f7fafc;
-  padding: 4px 8px;
-  border-radius: 10px;
+font-weight: 600; /* Bold for clarity */
+  text-align: right;
 }
 
 .plant-status {
