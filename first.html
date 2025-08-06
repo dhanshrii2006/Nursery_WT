@@ -1,0 +1,656 @@
+<!-- Develop a static webpage for nursery displaying nursery name , discount ad (scrolling ad, display different colors with different ad )  and product information ( product name, image , price) 
+
+remove multiple images remove condition remove remove distance-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Rescue - Save Plants, Build Community</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: "Open Sans", sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background-color: #f0f8f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Emergency Ticker */
+        .emergency-ticker {
+            background: linear-gradient(90deg, #d69e2e, #ed8936);
+            color: white;
+            padding: 8px 0;
+            text-align: center;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #2f855a, #38a169, #48bb78);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .search-container {
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 12px 20px;
+            border-radius: 25px;
+            border: none;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.95);
+            color: #2d3748;
+        }
+
+        .search-bar::placeholder {
+            color: #718096;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .profile-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        /* Main Layout */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 20px;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+            height: fit-content;
+            border: 2px solid #e6fffa;
+        }
+
+        .filter-section {
+            margin-bottom: 2rem;
+        }
+
+        .filter-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2f855a;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .filter-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .filter-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .filter-option:hover {
+            background: #f0fff4;
+        }
+
+        .filter-option input[type="checkbox"] {
+            accent-color: #48bb78;
+        }
+
+        /* Plant Grid */
+        .plant-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        /* Plant Card */
+        .plant-card {
+            background-color: #f0fff4;
+            border: 2px solid #e6fffa;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .plant-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Plant Image - Single Image Only */
+        .plant-image {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            background: #f0f0f0;
+            overflow: hidden;
+        }
+
+        .plant-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .rescue-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: white;
+            animation: pulse 1.5s infinite;
+        }
+
+        .urgent {
+            background: #e53e3e;
+        }
+
+        .warning {
+            background: #d69e2e;
+        }
+
+        .safe {
+            background: #38a169;
+        }
+
+        /* Plant Info */
+        .plant-info {
+            padding: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .info-left {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .plant-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin: 0;
+        }
+
+        .plant-species {
+            font-size: 0.95rem;
+            color: #718096;
+            margin: 0;
+        }
+
+        .nursery-info {
+            font-size: 0.95rem;
+            color: #4a5568;
+        }
+
+        .nursery-name {
+            font-weight: 500;
+            color: #2f855a;
+        }
+
+        .price-tag {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #2f855a;
+        }
+
+        .info-right {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: -0.5rem;
+        }
+
+        .plant-size {
+            font-size: 1rem;
+            color: #2d3748;
+            font-weight: 600;
+            background: rgba(72, 187, 120, 0.15);
+            padding: 4px 10px;
+            border-radius: 8px;
+        }
+
+        .price-action {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .free-rescue {
+            background: #2b6cb0;
+            color: white;
+            font-size: 0.95rem;
+            font-weight: 500;
+            padding: 10px 14px;
+            border-radius: 10px;
+            flex: 1;
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .free-rescue:hover {
+            transform: scale(1.03);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .rescue-btn {
+            background: #2f855a;
+            color: white;
+            font-size: 1rem;
+            font-weight: 700;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 10px;
+            flex: 1.2;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .rescue-btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+            background: #276749;
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+            .plant-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .plant-name {
+                font-size: 1.2rem;
+            }
+            .plant-species,
+            .nursery-info,
+            .price-tag {
+                font-size: 0.9rem;
+            }
+            .plant-size {
+                font-size: 0.95rem;
+            }
+            .free-rescue,
+            .rescue-btn {
+                padding: 12px;
+                font-size: 1rem;
+            }
+            .price-action {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="emergency-ticker">
+        <div class="ticker-content">
+            URGENT: 23 plants need rescue today! • 5 new rescues in your area • 12 plants expire in 2 hours • Join 847 plant heroes today!
+        </div>
+    </div>
+    <header>
+        <div class="header-content">
+            <div class="logo">Plant Rescue</div>
+            <div class="search-container">
+                <input type="text" class="search-bar" placeholder="Search plants, nurseries, or species...">
+            </div>
+            <div class="user-profile">
+                <span>My Rescues</span>
+                <div class="profile-icon">👤</div>
+            </div>
+        </div>
+    </header>
+    <div class="main-container">
+        <aside class="sidebar">
+            <div class="filter-section">
+                <h3 class="filter-title">Plant Type</h3>
+                <div class="filter-options">
+                    <label class="filter-option">
+                        <input type="checkbox" checked>
+                        <span>Indoor Plants</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox">
+                        <span>Outdoor Plants</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox">
+                        <span>Succulents</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox">
+                        <span>Flowers</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox">
+                        <span>Herbs</span>
+                    </label>
+                </div>
+            </div>
+            <div class="filter-section">
+                <h3 class="filter-title">Size</h3>
+                <div class="filter-options">
+                    <label class="filter-option">
+                        <input type="checkbox">
+                        <span>Small</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox" checked>
+                        <span>Medium</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox">
+                        <span>Large</span>
+                    </label>
+                </div>
+            </div>
+            <div class="filter-section">
+                <h3 class="filter-title">Care Level</h3>
+                <div class="filter-options">
+                    <label class="filter-option">
+                        <input type="checkbox" checked>
+                        <span>Beginner</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox">
+                        <span>Intermediate</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox">
+                        <span>Expert</span>
+                    </label>
+                </div>
+            </div>
+            <div class="filter-section">
+                <h3 class="filter-title">Urgency</h3>
+                <div class="filter-options">
+                    <label class="filter-option">
+                        <input type="checkbox" checked>
+                        <span>Next 24 hours</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox">
+                        <span>This week</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox">
+                        <span>This month</span>
+                    </label>
+                </div>
+            </div>
+            <div class="filter-section">
+                <h3 class="filter-title">My Rescues</h3>
+                <div class="filter-options">
+                    <p>You have rescued 5 plants this week.</p>
+                    <p><a href="#">View your rescue history</a></p>
+                </div>
+            </div>
+        </aside>
+        <main class="plant-grid">
+            <!-- Golden Pothos -->
+            <div class="plant-card">
+                <div class="plant-image">
+                    <img src="Nursery_WT/src/plant1.jpeg" alt="Golden Pothos">
+                    <div class="rescue-badge urgent">URGENT</div>
+                </div>
+                <div class="plant-info">
+                    <div class="info-left">
+                        <h3 class="plant-name">Golden Pothos</h3>
+                        <p class="plant-species">Epipremnum aureum</p>
+                        <div class="nursery-info">
+                            <span class="nursery-name">Green Valley Nursery</span>
+                        </div>
+                        <span class="price-tag">FREE</span>
+                    </div>
+                    <div class="info-right">
+                        <div class="plant-size">Medium</div>
+                    </div>
+                    <div class="price-action">
+                        <div class="free-rescue">FREE RESCUE</div>
+                        <button class="rescue-btn">Rescue Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Snake Plant -->
+            <div class="plant-card">
+                <div class="plant-image">
+                    <img src="Nursery_WT/src/plant1.jpeg" alt="Snake Plant">
+                    <div class="rescue-badge warning">24H LEFT</div>
+                </div>
+                <div class="plant-info">
+                    <div class="info-left">
+                        <h3 class="plant-name">Snake Plant</h3>
+                        <p class="plant-species">Sansevieria trifasciata</p>
+                        <div class="nursery-info">
+                            <span class="nursery-name">Bloom & Grow</span>
+                        </div>
+                        <span class="price-tag">$8</span>
+                    </div>
+                    <div class="info-right">
+                        <div class="plant-size">Large</div>
+                    </div>
+                    <div class="price-action">
+                        <div class="free-rescue">FREE RESCUE</div>
+                        <button class="rescue-btn">Rescue Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Peace Lily -->
+            <div class="plant-card">
+                <div class="plant-image">
+                    <img src="Nursery_WT/src/plant1.jpeg" alt="Peace Lily">
+                    <div class="rescue-badge safe">AVAILABLE</div>
+                </div>
+                <div class="plant-info">
+                    <div class="info-left">
+                        <h3 class="plant-name">Peace Lily</h3>
+                        <p class="plant-species">Spathiphyllum wallisii</p>
+                        <div class="nursery-info">
+                            <span class="nursery-name">Plant Paradise</span>
+                        </div>
+                        <span class="price-tag">$12</span>
+                    </div>
+                    <div class="info-right">
+                        <div class="plant-size">Medium</div>
+                    </div>
+                    <div class="price-action">
+                        <div class="free-rescue">FREE RESCUE</div>
+                        <button class="rescue-btn">Rescue Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Monstera Deliciosa -->
+            <div class="plant-card">
+                <div class="plant-image">
+                    <img src="Nursery_WT/src/plant1.jpeg" alt="Monstera Deliciosa">
+                    <div class="rescue-badge urgent">URGENT</div>
+                </div>
+                <div class="plant-info">
+                    <div class="info-left">
+                        <h3 class="plant-name">Monstera Deliciosa</h3>
+                        <p class="plant-species">Monstera deliciosa</p>
+                        <div class="nursery-info">
+                            <span class="nursery-name">Tropical Gardens</span>
+                        </div>
+                        <span class="price-tag">$15</span>
+                    </div>
+                    <div class="info-right">
+                        <div class="plant-size">Large</div>
+                    </div>
+                    <div class="price-action">
+                        <div class="free-rescue">FREE RESCUE</div>
+                        <button class="rescue-btn">Rescue Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rubber Plant -->
+            <div class="plant-card">
+                <div class="plant-image">
+                    <img src="Nursery_WT/src/plant1.jpeg" alt="Rubber Plant">
+                    <div class="rescue-badge warning">12H LEFT</div>
+                </div>
+                <div class="plant-info">
+                    <div class="info-left">
+                        <h3 class="plant-name">Rubber Plant</h3>
+                        <p class="plant-species">Ficus elastica</p>
+                        <div class="nursery-info">
+                            <span class="nursery-name">Green Thumb Co.</span>
+                        </div>
+                        <span class="price-tag">FREE</span>
+                    </div>
+                    <div class="info-right">
+                        <div class="plant-size">Medium</div>
+                    </div>
+                    <div class="price-action">
+                        <div class="free-rescue">FREE RESCUE</div>
+                        <button class="rescue-btn">Rescue Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fiddle Leaf Fig -->
+            <div class="plant-card">
+                <div class="plant-image">
+                    <img src="Nursery_WT/src/plant1.jpeg" alt="Fiddle Leaf Fig">
+                    <div class="rescue-badge safe">AVAILABLE</div>
+                </div>
+                <div class="plant-info">
+                    <div class="info-left">
+                        <h3 class="plant-name">Fiddle Leaf Fig</h3>
+                        <p class="plant-species">Ficus lyrata</p>
+                        <div class="nursery-info">
+                            <span class="nursery-name">Urban Jungle</span>
+                        </div>
+                        <span class="price-tag">$25</span>
+                    </div>
+                    <div class="info-right">
+                        <div class="plant-size">Large</div>
+                    </div>
+                    <div class="price-action">
+                        <div class="free-rescue">FREE RESCUE</div>
+                        <button class="rescue-btn">Rescue Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Spider Plant -->
+            <div class="plant-card">
+                <div class="plant-image">
+                    <img src="Nursery_WT/src/plant1.jpeg" alt="Spider Plant">
+                    <div class="rescue-badge warning">6H LEFT</div>
+                </div>
+                <div class="plant-info">
+                    <div class="info-left">
+                        <h3 class="plant-name">Spider Plant</h3>
+                        <p class="plant-species">Chlorophytum comosum</p>
+                        <div class="nursery-info">
+                            <span class="nursery-name">Leaf & Bloom</span>
+                        </div>
+                        <span class="price-tag">$5</span>
+                    </div>
+                    <div class="info-right">
+                        <div class="plant-size">Small</div>
+                    </div>
+                    <div class="price-action">
+                        <div class="free-rescue">FREE RESCUE</div>
+                        <button class="rescue-btn">Rescue Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ZZ Plant -->
+            <div class="plant-card">
+                <div class="plant-image">
+                    <img src="Nursery_WT/src/plant1.jpeg" alt="ZZ Plant">
+                    <div class="rescue-badge safe">AVAILABLE</div>
+                </div>
+                <div class="plant-info">
+                    <div class="info-left">
+                        <h3 class="plant-name">ZZ Plant</h3>
+                        <p class="plant-species">Zamioculcas zamiifolia</p>
+                        <div class="nursery-info">
+                            <span class="nursery-name">Nature's Best</span>
+                        </div>
+                        <span class="price-tag">$10</span>
+                    </div>
+                    <div class="info-right">
+                        <div class="plant-size">Medium</div>
+                    </div>
+                    <div class="price-action">
+                        <div class="free-rescue">FREE RESCUE</div>
+                        <button class="rescue-btn">Rescue Now</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
