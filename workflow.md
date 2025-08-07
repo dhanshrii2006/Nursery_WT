@@ -29,3 +29,8 @@ Live inventory counter per nursery
 Rescue cart with pickup time selector
 Recently rescued section showing success stories
 Sort options: Most Urgent | Nearest | Best Value
+
+
+<!-- prac-1 done -->
+<!-- prac-2 done -->
+<!-- prac-3 cart option -->
