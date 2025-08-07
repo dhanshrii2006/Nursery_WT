@@ -1,0 +1,277 @@
+<!-- explaining code using comments -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- head attribute has meta data
+ meta data is information about the webpage that is not visible to the user
+ charset is the character set used in the webpage
+ name is title of the webpage
+ href is the link to the stylesheet -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Rescue - Save Plants, Build Community</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="first.css">
+
+</head>
+
+
+<!-- body is the main content of the webpage
+ div is a container for emergency ticker and header
+ header means header of the webpage
+  -->
+
+
+<body>
+    <div class="emergency-ticker">
+        <div class="ticker-content">
+            URGENT: 23 plants need rescue today! • 5 new rescues in your area • 12 plants expire in 2 hours • Join 847
+            plant heroes today!
+        </div>
+    </div>
+
+    <header>
+        <div class="header-content">
+            <div class="logo">Plant Rescue</div>
+            <div class="search-container">
+                <!-- class attribute is used to style the element -->
+                <input type="text" class="search-bar" placeholder="Search plants, nurseries, or species...">
+
+<!-- type attribute is used to specify the type of input
+placeholder attribute is used to specify the placeholder text
+ -->
+
+            </div>
+            <div class="user-profile">
+                <span>My Rescues</span>
+                <!-- span is used to group inline elements -->
+                <div class="profile-icon">👤</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <aside class="sidebar">
+            <!-- aside is used to group related content -->
+            <div class="filter-section">
+                <h3 class="filter-title">Plant Type</h3>
+                <div class="filter-options">
+                    <label class="filter-option">
+                        <!-- label is used to group related form elements -->
+                        <input type="checkbox" checked>
+                        <!-- input is used to create form elements such as checkboxes, radio buttons, text fields, and more -->
+                         <!-- checked attribute is used to specify that the checkbox is checked -->
+                        <span>Indoor Plants</span>
+                    </label>
+                    <!-- label is used to group related form elements -->
+                    <label class="filter-option">
+                        <input type="checkbox">
+                        <span>Outdoor Plants</span>
+                        <!-- span is used to group inline elements -->
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox">
+                        <span>Succulents</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox">
+                        <span>Flowers</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox">
+                        <span>Herbs</span>
+                    </label>
+                </div>
+            </div>
+            <div class="filter-section">
+                <h3 class="filter-title">Size</h3>
+                <div class="filter-options">
+                    <label class="filter-option">
+                        <input type="checkbox">
+                        <span>Small</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox" checked>
+                        <span>Medium</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox">
+                        <span>Large</span>
+                    </label>
+                </div>
+            </div>
+            <div class="filter-section">
+                <h3 class="filter-title">Care Level</h3>
+                <div class="filter-options">
+                    <label class="filter-option">
+                        <input type="checkbox" checked>
+                        <span>Beginner</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox">
+                        <span>Intermediate</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox">
+                        <span>Expert</span>
+                    </label>
+                </div>
+            </div>
+            <div class="filter-section">
+                <h3 class="filter-title">Urgency</h3>
+                <div class="filter-options">
+                    <label class="filter-option">
+                        <input type="checkbox" checked>
+                        <span>Next 24 hours</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox">
+                        <span>This week</span>
+                    </label>
+                    <label class="filter-option">
+                        <input type="checkbox">
+                        <span>This month</span>
+                    </label>
+                </div>
+            </div>
+            <div class="filter-section">
+                <h3 class="filter-title">My Rescues</h3>
+                <div class="filter-options">
+                    <p>You have rescued 5 plants this week.</p>
+                    <p><a href="#">View your rescue history</a></p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- 
+        grid is used to create a layout with multiple rows and columns
+        here we have 2 rows and 2 columns
+        
+        here grid name is plant-grid and 
+        each grid item has a class of plant-card
+        plant card has a class of plant-image and plant-info
+         plant image has a class of rescue-badge and image aswell 
+        plant info has a class of info-left and info-right
+        info left has a class of plant-name and plant-species and nursery-info
+        -->
+
+
+        <main class="plant-grid">
+            <!-- Golden Pothos -->
+            <div class="plant-card">
+
+                <div class="plant-image">
+                    <img src="Nursery_WT\img\pathos.jpg" alt="Golden Pothos">
+                    <div class="rescue-badge urgent">URGENT</div>
+                </div>
+
+                <div class="plant-info">
+
+                    <div class="info-left">
+                        <h3 class="plant-name">Golden Pothos</h3>
+                        <p class="plant-species">Epipremnum aureum</p>
+                        <div class="nursery-info">
+                            <span class="nursery-name">Green Valley Nursery</span>
+                        </div>
+                
+                        <span class="price-tag">FREE</span>
+                    </div>
+
+
+                    <div class="info-right">
+                        <div class="plant-size">Medium</div>
+                    </div>
+                    <div class="price-action">
+                        <div class="free-rescue">FREE RESCUE</div>
+                        <button class="rescue-btn">Rescue Now</button>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+            <!-- Snake Plant -->
+            <div class="plant-card">
+                <div class="plant-image">
+                    <img src="Nursery_WT\img\snake.webp" alt="Snake Plant">
+                    <div class="rescue-badge warning">24H LEFT</div>
+                </div>
+                <div class="plant-info">
+                    <div class="info-left">
+                        <h3 class="plant-name">Snake Plant</h3>
+                        <p class="plant-species">Sansevieria trifasciata</p>
+                        <div class="nursery-info">
+                            <span class="nursery-name">Bloom & Grow</span>
+                        </div>
+                        <span class="price-tag">$8</span>
+                    </div>
+                    <div class="info-right">
+                        <div class="plant-size">Large</div>
+                    </div>
+                    <div class="price-action">
+                        <div class="free-rescue">FREE RESCUE</div>
+                        <button class="rescue-btn">Rescue Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Peace Lily -->
+            <div class="plant-card">
+                <div class="plant-image">
+                    <img src="Nursery_WT\img\peace.webp" alt="Peace Lily">
+                    <div class="rescue-badge safe">AVAILABLE</div>
+                </div>
+                <div class="plant-info">
+                    <div class="info-left">
+                        <h3 class="plant-name">Peace Lily</h3>
+                        <p class="plant-species">Spathiphyllum wallisii</p>
+                        <div class="nursery-info">
+                            <span class="nursery-name">Plant Paradise</span>
+                        </div>
+                        <span class="price-tag">$12</span>
+                    </div>
+                    <div class="info-right">
+                        <div class="plant-size">Medium</div>
+                    </div>
+                    <div class="price-action">
+                        <div class="free-rescue">FREE RESCUE</div>
+                        <button class="rescue-btn">Rescue Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Monstera Deliciosa -->
+            <div class="plant-card">
+                <div class="plant-image">
+                    <img src="Nursery_WT/src/plant1.jpeg" alt="Monstera Deliciosa">
+                    <div class="rescue-badge urgent">URGENT</div>
+                </div>
+                <div class="plant-info">
+                    <div class="info-left">
+                        <h3 class="plant-name">Monstera Deliciosa</h3>
+                        <p class="plant-species">Monstera deliciosa</p>
+                        <div class="nursery-info">
+                            <span class="nursery-name">Tropical Gardens</span>
+                        </div>
+                        <span class="price-tag">$15</span>
+                    </div>
+                    <div class="info-right">
+                        <div class="plant-size">Large</div>
+                    </div>
+                    <div class="price-action">
+                        <div class="free-rescue">FREE RESCUE</div>
+                        <button class="rescue-btn">Rescue Now</button>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>
