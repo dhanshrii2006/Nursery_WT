@@ -4,6 +4,7 @@ remove multiple images remove condition remove remove distance-->
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -88,15 +89,16 @@ remove multiple images remove condition remove remove distance-->
             cursor: pointer;
         }
 
-        /* Main Layout */
         .main-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 2rem 20px;
             display: grid;
-            grid-template-columns: 280px 1fr;
+            grid-template-columns: 240px 1fr;
+            /* Changed from 280px */
             gap: 2rem;
         }
+
 
         /* Sidebar */
         .sidebar {
@@ -310,9 +312,17 @@ remove multiple images remove condition remove remove distance-->
 
         /* Animations */
         @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
 
         /* Responsive Design */
@@ -320,36 +330,44 @@ remove multiple images remove condition remove remove distance-->
             .main-container {
                 grid-template-columns: 1fr;
             }
+
             .plant-grid {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
+
             .plant-name {
                 font-size: 1.2rem;
             }
+
             .plant-species,
             .nursery-info,
             .price-tag {
                 font-size: 0.9rem;
             }
+
             .plant-size {
                 font-size: 0.95rem;
             }
+
             .free-rescue,
             .rescue-btn {
                 padding: 12px;
                 font-size: 1rem;
             }
+
             .price-action {
                 flex-direction: column;
             }
         }
     </style>
 </head>
+
 <body>
     <div class="emergency-ticker">
         <div class="ticker-content">
-            URGENT: 23 plants need rescue today! • 5 new rescues in your area • 12 plants expire in 2 hours • Join 847 plant heroes today!
+            URGENT: 23 plants need rescue today! • 5 new rescues in your area • 12 plants expire in 2 hours • Join 847
+            plant heroes today!
         </div>
     </div>
     <header>
@@ -549,108 +567,10 @@ remove multiple images remove condition remove remove distance-->
                         <button class="rescue-btn">Rescue Now</button>
                     </div>
                 </div>
-            </div>
 
-            <!-- Rubber Plant -->
-            <div class="plant-card">
-                <div class="plant-image">
-                    <img src="Nursery_WT/src/plant1.jpeg" alt="Rubber Plant">
-                    <div class="rescue-badge warning">12H LEFT</div>
-                </div>
-                <div class="plant-info">
-                    <div class="info-left">
-                        <h3 class="plant-name">Rubber Plant</h3>
-                        <p class="plant-species">Ficus elastica</p>
-                        <div class="nursery-info">
-                            <span class="nursery-name">Green Thumb Co.</span>
-                        </div>
-                        <span class="price-tag">FREE</span>
-                    </div>
-                    <div class="info-right">
-                        <div class="plant-size">Medium</div>
-                    </div>
-                    <div class="price-action">
-                        <div class="free-rescue">FREE RESCUE</div>
-                        <button class="rescue-btn">Rescue Now</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Fiddle Leaf Fig -->
-            <div class="plant-card">
-                <div class="plant-image">
-                    <img src="Nursery_WT/src/plant1.jpeg" alt="Fiddle Leaf Fig">
-                    <div class="rescue-badge safe">AVAILABLE</div>
-                </div>
-                <div class="plant-info">
-                    <div class="info-left">
-                        <h3 class="plant-name">Fiddle Leaf Fig</h3>
-                        <p class="plant-species">Ficus lyrata</p>
-                        <div class="nursery-info">
-                            <span class="nursery-name">Urban Jungle</span>
-                        </div>
-                        <span class="price-tag">$25</span>
-                    </div>
-                    <div class="info-right">
-                        <div class="plant-size">Large</div>
-                    </div>
-                    <div class="price-action">
-                        <div class="free-rescue">FREE RESCUE</div>
-                        <button class="rescue-btn">Rescue Now</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Spider Plant -->
-            <div class="plant-card">
-                <div class="plant-image">
-                    <img src="Nursery_WT/src/plant1.jpeg" alt="Spider Plant">
-                    <div class="rescue-badge warning">6H LEFT</div>
-                </div>
-                <div class="plant-info">
-                    <div class="info-left">
-                        <h3 class="plant-name">Spider Plant</h3>
-                        <p class="plant-species">Chlorophytum comosum</p>
-                        <div class="nursery-info">
-                            <span class="nursery-name">Leaf & Bloom</span>
-                        </div>
-                        <span class="price-tag">$5</span>
-                    </div>
-                    <div class="info-right">
-                        <div class="plant-size">Small</div>
-                    </div>
-                    <div class="price-action">
-                        <div class="free-rescue">FREE RESCUE</div>
-                        <button class="rescue-btn">Rescue Now</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ZZ Plant -->
-            <div class="plant-card">
-                <div class="plant-image">
-                    <img src="Nursery_WT/src/plant1.jpeg" alt="ZZ Plant">
-                    <div class="rescue-badge safe">AVAILABLE</div>
-                </div>
-                <div class="plant-info">
-                    <div class="info-left">
-                        <h3 class="plant-name">ZZ Plant</h3>
-                        <p class="plant-species">Zamioculcas zamiifolia</p>
-                        <div class="nursery-info">
-                            <span class="nursery-name">Nature's Best</span>
-                        </div>
-                        <span class="price-tag">$10</span>
-                    </div>
-                    <div class="info-right">
-                        <div class="plant-size">Medium</div>
-                    </div>
-                    <div class="price-action">
-                        <div class="free-rescue">FREE RESCUE</div>
-                        <button class="rescue-btn">Rescue Now</button>
-                    </div>
-                </div>
             </div>
         </main>
     </div>
 </body>
+
 </html>
