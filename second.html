@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plant Rescue - Save Plants, Build Community</title>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Poppins:wght@500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="second.css">
-   
+
 </head>
 
 <body>
 
     <div class="emergency-ticker">
         <div class="ticker-content">
-            🚨 URGENT: 23 plants need rescue today! • 🌱 5 new rescues in your area • ⏰ 12 plants expire in 2 hours • 👤 Join 847 plant heroes today!
+            🚨 URGENT: 23 plants need rescue today! • 🌱 5 new rescues in your area • ⏰ 12 plants expire in 2 hours • 👤
+            Join 847 plant heroes today!
         </div>
     </div>
-    
+
     <header>
 
         <div class="container">
@@ -25,7 +29,7 @@
                 <div class="logo">
 
                     <i class="fas fa-seedling"></i>
-<!-- fas fa-seedling is the icon for the plant rescue logo  -->
+                    <!-- fas fa-seedling is the icon for the plant rescue logo  -->
                     Plant Rescue
                 </div>
 
@@ -42,12 +46,12 @@
             </div>
         </div>
     </header>
-    
+
     <div class="container">
         <div class="main-container">
             <aside class="sidebar">
                 <h2>Filters</h2>
-                
+
                 <div class="filter-section">
                     <h3><i class="fas fa-tag"></i> Price Range</h3>
                     <div class="price-range">
@@ -60,7 +64,7 @@
                         <span>Max: $25</span>
                     </div>
                 </div>
-                
+
                 <div class="filter-section">
                     <h3><i class="fas fa-leaf"></i> Plant Type</h3>
                     <div class="filter-options">
@@ -82,7 +86,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="filter-section">
                     <h3><i class="fas fa-map-marker-alt"></i> Distance</h3>
                     <div class="distance-filter">
@@ -94,7 +98,7 @@
                         </select>
                     </div>
                 </div>
-                
+
                 <div class="filter-section">
                     <h3><i class="fas fa-heart"></i> Condition</h3>
                     <div class="filter-options">
@@ -112,9 +116,9 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <button class="apply-filters">Apply Filters</button>
-                
+
                 <div class="stats">
                     <div class="stat-item">
                         <span class="stat-label">Plants Available:</span>
@@ -130,7 +134,7 @@
                     </div>
                 </div>
             </aside>
-            
+
             <main>
                 <div class="plant-grid-header">
                     <h2>Available Plants for Rescue</h2>
@@ -143,15 +147,18 @@
                         </select>
                     </div>
                 </div>
-                
+
                 <div class="plant-grid">
                     <!-- Golden Pothos -->
                     <div class="plant-card">
                         <div class="plant-image">
                             <div class="slideshow-container" data-slide-index="0">
-                                <img src="https://placehold.co/600x400/48bb78/FFFFFF?text=Golden+Pothos" alt="Golden Pothos" class="slide active">
-                                <img src="https://placehold.co/600x400/38a169/FFFFFF?text=Golden+Pothos+2" alt="Golden Pothos" class="slide">
-                                <img src="https://placehold.co/600x400/2f855a/FFFFFF?text=Golden+Pothos+3" alt="Golden Pothos" class="slide">
+                                <img src="https://placehold.co/600x400/48bb78/FFFFFF?text=Golden+Pothos"
+                                    alt="Golden Pothos" class="slide active">
+                                <img src="https://placehold.co/600x400/38a169/FFFFFF?text=Golden+Pothos+2"
+                                    alt="Golden Pothos" class="slide">
+                                <img src="https://placehold.co/600x400/2f855a/FFFFFF?text=Golden+Pothos+3"
+                                    alt="Golden Pothos" class="slide">
                                 <button class="arrow arrow-left">◄</button>
                                 <button class="arrow arrow-right">►</button>
                                 <div class="rescue-badge urgent">URGENT</div>
@@ -172,7 +179,7 @@
                                     <div class="distance"><i class="fas fa-map-marker-alt"></i> 0.8 miles</div>
                                 </div>
                             </div>
-                            
+
                             <div class="plant-details">
                                 <div class="condition-section">
                                     <h4 class="conditions"><i class="fas fa-heart"></i> Condition:</h4>
@@ -187,27 +194,38 @@
                                     <i class="fas fa-gift"></i> FREE RESCUE
                                 </div>
                             </div>
-                            
+
                             <div class="plant-actions">
-                                <div class="quantity-control">
+                                <!-- <div class="quantity-control">
                                     <button class="quantity-btn minus" onclick="changeQuantity(this, -1)">-</button>
                                     <span class="quantity-value">1</span>
                                     <button class="quantity-btn plus" onclick="changeQuantity(this, 1)">+</button>
+                                </div> -->
+
+                                <div class="quantity-control">
+                                    <button onclick="decrease(this)">-</button>
+                                    <span class="quantity-value">1</span>
+                                    <button onclick="increase(this)">+</button>
                                 </div>
+
+
                                 <button class="rescue-btn">
                                     <i class="fas fa-hands-helping"></i> Rescue Now
                                 </button>
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- Snake Plant -->
                     <div class="plant-card">
                         <div class="plant-image">
                             <div class="slideshow-container" data-slide-index="0">
-                                <img src="https://placehold.co/600x400/319795/FFFFFF?text=Snake+Plant" alt="Snake Plant" class="slide active">
-                                <img src="https://placehold.co/600x400/2c7a7b/FFFFFF?text=Snake+Plant+2" alt="Snake Plant" class="slide">
-                                <img src="https://placehold.co/600x400/285e61/FFFFFF?text=Snake+Plant+3" alt="Snake Plant" class="slide">
+                                <img src="https://placehold.co/600x400/319795/FFFFFF?text=Snake+Plant" alt="Snake Plant"
+                                    class="slide active">
+                                <img src="https://placehold.co/600x400/2c7a7b/FFFFFF?text=Snake+Plant+2"
+                                    alt="Snake Plant" class="slide">
+                                <img src="https://placehold.co/600x400/285e61/FFFFFF?text=Snake+Plant+3"
+                                    alt="Snake Plant" class="slide">
                                 <button class="arrow arrow-left">◄</button>
                                 <button class="arrow arrow-right">►</button>
                                 <div class="rescue-badge warning">24H LEFT</div>
@@ -228,7 +246,7 @@
                                     <div class="distance"><i class="fas fa-map-marker-alt"></i> 1.2 miles</div>
                                 </div>
                             </div>
-                            
+
                             <div class="plant-details">
                                 <div class="condition-section">
                                     <h4 class="conditions"><i class="fas fa-heart"></i> Condition:</h4>
@@ -243,27 +261,39 @@
                                     <i class="fas fa-gift"></i> FREE RESCUE
                                 </div>
                             </div>
-                            
+
                             <div class="plant-actions">
-                                <div class="quantity-control">
+                                <!-- <div class="quantity-control">
                                     <button class="quantity-btn minus" onclick="changeQuantity(this, -1)">-</button>
                                     <span class="quantity-value">1</span>
                                     <button class="quantity-btn plus" onclick="changeQuantity(this, 1)">+</button>
+                                </div> -->
+
+                                
+                                <div class="quantity-control">
+                                    <button onclick="decrease(this)">-</button>
+                                    <span class="quantity-value">1</span>
+                                    <button onclick="increase(this)">+</button>
                                 </div>
+
+
                                 <button class="rescue-btn">
                                     <i class="fas fa-hands-helping"></i> Rescue Now
                                 </button>
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- Peace Lily -->
                     <div class="plant-card">
                         <div class="plant-image">
                             <div class="slideshow-container" data-slide-index="0">
-                                <img src="https://placehold.co/600x400/ed8936/FFFFFF?text=Peace+Lily" alt="Peace Lily" class="slide active">
-                                <img src="https://placehold.co/600x400/dd6b20/FFFFFF?text=Peace+Lily+2" alt="Peace Lily" class="slide">
-                                <img src="https://placehold.co/600x400/c05621/FFFFFF?text=Peace+Lily+3" alt="Peace Lily" class="slide">
+                                <img src="https://placehold.co/600x400/ed8936/FFFFFF?text=Peace+Lily" alt="Peace Lily"
+                                    class="slide active">
+                                <img src="https://placehold.co/600x400/dd6b20/FFFFFF?text=Peace+Lily+2" alt="Peace Lily"
+                                    class="slide">
+                                <img src="https://placehold.co/600x400/c05621/FFFFFF?text=Peace+Lily+3" alt="Peace Lily"
+                                    class="slide">
                                 <button class="arrow arrow-left">◄</button>
                                 <button class="arrow arrow-right">►</button>
                                 <div class="rescue-badge safe">AVAILABLE</div>
@@ -284,7 +314,7 @@
                                     <div class="distance"><i class="fas fa-map-marker-alt"></i> 2.1 miles</div>
                                 </div>
                             </div>
-                            
+
                             <div class="plant-details">
                                 <div class="condition-section">
                                     <h4 class="conditions"><i class="fas fa-heart"></i> Condition:</h4>
@@ -299,27 +329,38 @@
                                     <i class="fas fa-gift"></i> FREE RESCUE
                                 </div>
                             </div>
-                            
+
                             <div class="plant-actions">
-                                <div class="quantity-control">
+                                <!-- <div class="quantity-control">
                                     <button class="quantity-btn minus" onclick="changeQuantity(this, -1)">-</button>
                                     <span class="quantity-value">1</span>
                                     <button class="quantity-btn plus" onclick="changeQuantity(this, 1)">+</button>
+                                </div> -->
+                                
+                                <div class="quantity-control">
+                                    <button onclick="decrease(this)">-</button>
+                                    <span class="quantity-value">1</span>
+                                    <button onclick="increase(this)">+</button>
                                 </div>
+
+
                                 <button class="rescue-btn">
                                     <i class="fas fa-hands-helping"></i> Rescue Now
                                 </button>
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- Monstera Deliciosa -->
                     <div class="plant-card">
                         <div class="plant-image">
                             <div class="slideshow-container" data-slide-index="0">
-                                <img src="https://placehold.co/600x400/2f855a/FFFFFF?text=Monstera" alt="Monstera Deliciosa" class="slide active">
-                                <img src="https://placehold.co/600x400/38a169/FFFFFF?text=Monstera+2" alt="Monstera Deliciosa" class="slide">
-                                <img src="https://placehold.co/600x400/48bb78/FFFFFF?text=Monstera+3" alt="Monstera Deliciosa" class="slide">
+                                <img src="https://placehold.co/600x400/2f855a/FFFFFF?text=Monstera"
+                                    alt="Monstera Deliciosa" class="slide active">
+                                <img src="https://placehold.co/600x400/38a169/FFFFFF?text=Monstera+2"
+                                    alt="Monstera Deliciosa" class="slide">
+                                <img src="https://placehold.co/600x400/48bb78/FFFFFF?text=Monstera+3"
+                                    alt="Monstera Deliciosa" class="slide">
                                 <button class="arrow arrow-left">◄</button>
                                 <button class="arrow arrow-right">►</button>
                                 <div class="rescue-badge urgent">URGENT</div>
@@ -340,7 +381,7 @@
                                     <div class="distance"><i class="fas fa-map-marker-alt"></i> 0.5 miles</div>
                                 </div>
                             </div>
-                            
+
                             <div class="plant-details">
                                 <div class="condition-section">
                                     <h4 class="conditions"><i class="fas fa-heart"></i> Condition:</h4>
@@ -355,13 +396,22 @@
                                     <i class="fas fa-gift"></i> FREE RESCUE
                                 </div>
                             </div>
-                            
+
                             <div class="plant-actions">
-                                <div class="quantity-control">
+                                <!-- <div class="quantity-control">
                                     <button class="quantity-btn minus" onclick="changeQuantity(this, -1)">-</button>
                                     <span class="quantity-value">1</span>
                                     <button class="quantity-btn plus" onclick="changeQuantity(this, 1)">+</button>
+                                </div> -->
+
+                                <div class="quantity-control">
+                                    <button onclick="decrease(this)">-</button>
+                                    <span class="quantity-value">1</span>
+                                    <button onclick="increase(this)">+</button>
                                 </div>
+
+
+
                                 <button class="rescue-btn">
                                     <i class="fas fa-hands-helping"></i> Rescue Now
                                 </button>
@@ -374,54 +424,80 @@
     </div>
 
     <script>
-        // Slideshow functionality
+        // Slideshow functionality for each container with images 
         document.querySelectorAll('.slideshow-container').forEach(container => {
             const slides = container.querySelectorAll('.slide');
             const leftArrow = container.querySelector('.arrow-left');
             const rightArrow = container.querySelector('.arrow-right');
             let currentIndex = 0;
-            
+
             function showSlide(index) {
                 slides.forEach(slide => slide.classList.remove('active'));
                 slides[index].classList.add('active');
             }
-            
+
+
             leftArrow.addEventListener('click', () => {
                 currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1;
                 showSlide(currentIndex);
             });
-            
+
             rightArrow.addEventListener('click', () => {
                 currentIndex = (currentIndex < slides.length - 1) ? currentIndex + 1 : 0;
                 showSlide(currentIndex);
             });
         });
-        
-        // Quantity control functionality
-        function changeQuantity(button, change) {
-            const control = button.closest('.quantity-control');
-            const valueElement = control.querySelector('.quantity-value');
-            let value = parseInt(valueElement.textContent);
-            
-            value += change;
-            
-            // Ensure value is between 1 and 99
-            if (value < 1) value = 1;
-            if (value > 99) value = 99;
-            
-            valueElement.textContent = value;
+
+
+
+
+        // Quantity control functionality for button elements
+        // function changeQuantity(button, change) {
+        //     const control = button.closest('.quantity-control');
+        //     const valueElement = control.querySelector('.quantity-value');
+
+        //     let value = parseInt(valueElement.textContent);
+
+        //     value += change;
+
+        //     // Ensure value is between 1 and 99
+        //     if (value < 1) value = 1;
+        //     if (value > 99) value = 99;
+
+        //     valueElement.textContent = value;
+        // }
+        function increase(button) {
+            const span = button.previousElementSibling;
+            let count = parseInt(span.innerText);
+
+            // Set max limit
+            if (count < 99) {
+                span.innerText = ++count;
+            }
         }
-        
+
+        function decrease(button) {
+            const span = button.nextElementSibling;
+            let count = parseInt(span.innerText);
+
+            // Set min limit
+            if (count > 1) {
+                span.innerText = --count;
+            }
+        }
+
+
         // Rescue button functionality
         document.querySelectorAll('.rescue-btn').forEach(button => {
-            button.addEventListener('click', function() {
+            button.addEventListener('click', function () {
                 const card = this.closest('.plant-card');
                 const plantName = card.querySelector('.plant-name').textContent;
                 const quantity = card.querySelector('.quantity-value').textContent;
-                
+
                 alert(`Rescuing ${quantity} ${plantName}(s)! Thank you for saving a plant!`);
             });
         });
     </script>
 </body>
+
 </html>

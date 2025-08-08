@@ -208,6 +208,7 @@
             height: 18px;
             accent-color: var(--primary);
         }
+/* input is used to create form elements such as checkboxes, radio buttons, text fields, and more */
 
         .filter-option label {
             font-size: 0.95rem;
@@ -222,7 +223,7 @@
         }
 
         .price-range input {
-            flex: 1;
+            flex: 1; /* This makes the input take up the remaining space in the container */
         }
 
         .price-values {
@@ -294,7 +295,7 @@
         /* Plant Grid */
         .plant-grid-header {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-between; /* This centers the content horizontally */
             align-items: center;
             margin-bottom: 1.5rem;
         }
@@ -315,7 +316,7 @@
 
         .plant-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(2, 1fr); /* This creates two equal columns fr stands for "fraction" meaning the space is divided into equal parts */
             gap: 2rem;
         }
 
@@ -357,8 +358,18 @@
 
         .slide.active {
             display: block;
-            animation: fadeIn 0.5s ease-in-out;
+            animation: fadeIn 0.5s ease-in-out; /* Fade in animation means the image will fade in over 0.5 seconds */
         }
+
+    /* keyframe is used to create animations in CSS
+    each keyframe is associated with a specific animation 
+    syntax for keyframe animation is @keyframes animation-name { animation-code } 
+    animation code is used to define the animation
+    like from, to, 0%, 100% etc. */
+
+
+
+
 
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -542,7 +553,7 @@
             margin-top: auto;
         }
 
-        .quantity-control {
+        /* .quantity-control {
             display: flex;
             align-items: center;
             background: var(--light);
@@ -573,7 +584,60 @@
             text-align: center;
             font-weight: 600;
             font-size: 1.1rem;
-        }
+        } */
+
+        .quantity-control {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--light);
+      border-radius: 50px;
+      overflow: hidden;
+      margin: 10px auto;
+    }
+
+    .quantity-btn {
+      width: 36px;
+      height: 36px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    .quantity-btn:hover {
+      background: var(--primary-light);
+    }
+
+    .quantity-value {
+      min-width: 40px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 1.1rem;
+      background: transparent;
+      padding: 0 10px;
+    }
+
+    .add-to-cart-btn {
+      margin-top: 10px;
+      background: var(--primary);
+      border: none;
+      padding: 8px 16px;
+      color: white;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .add-to-cart-btn:hover {
+      background: var(--primary-light);
+    }
 
         .rescue-btn {
             background: var(--primary);
