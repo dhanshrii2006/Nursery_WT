@@ -1,0 +1,405 @@
+
+body {
+    font-family: "Open Sans", sans-serif;
+    line-height: 1.6;
+    color: #2d3748;
+    background-color: #f0f8f0;
+    margin: 0;
+    padding: 0;
+}
+
+/* Emergency Ticker */
+.emergency-ticker {
+    background: linear-gradient(90deg, #d69e2e, #ed8936);
+    color: white;
+    padding: 8px 0;
+    text-align: center;
+    font-weight: 500;
+    font-size: 0.9rem;
+    position: relative;
+}
+
+/* Header */
+header {
+    background: linear-gradient(135deg, #2f855a, #38a169, #48bb78);
+    color: white;
+    padding: 1rem 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.search-container {
+    flex: 1;
+    max-width: 400px;
+}
+
+.search-bar {
+    width: 100%;
+    padding: 12px 20px;
+    border-radius: 25px;
+    border: none;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.95);
+    color: #2d3748;
+}
+
+.search-bar::placeholder {
+    color: #718096;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.profile-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* Main Layout */
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 20px;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 2rem;
+}
+
+/* Sidebar (Placeholder) */
+.sidebar {
+  background: white;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+  height: fit-content;
+  border: 2px solid #e6fffa;
+}
+
+.filter-section {
+  margin-bottom: 2rem;
+}
+
+.filter-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2f855a;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.filter-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.filter-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.filter-option:hover {
+  background: #f0fff4;
+}
+
+.filter-option input[type="checkbox"] {
+  accent-color: #48bb78;
+}
+
+/* Plant Grid */
+.plant-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+/* Plant Card */
+.plant-card {
+    background-color: #f0fff4;
+    border: 2px solid #e6fffa;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.plant-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Plant Image */
+.plant-image {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    background: #f0f0f0;
+}
+
+.slideshow-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.slide {
+    display: none;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.slide.active {
+    display: block;
+    opacity: 1;
+}
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 50%;
+    transition: background 0.3s ease;
+}
+
+.arrow:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.arrow-left {
+    left: 10px;
+}
+
+.arrow-right {
+    right: 10px;
+}
+
+.rescue-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: white;
+    animation: pulse 1.5s infinite;
+}
+
+.urgent {
+    background: #e53e3e;
+}
+
+.warning {
+    background: #d69e2e;
+}
+
+.safe {
+    background: #38a169;
+}
+
+/* Plant Info */
+.plant-info {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.info-left {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.plant-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #2d3748;
+    margin: 0;
+}
+
+.plant-species {
+    font-size: 0.9rem;
+    color: #718096;
+    margin: 0;
+}
+
+.nursery-info {
+    font-size: 0.9rem;
+    color: #4a5568;
+}
+
+.nursery-name {
+    font-weight: 500;
+    color: #2f855a;
+}
+
+.price-distance {
+    text-align: right;
+}
+
+.price-tag {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2f855a;
+}
+
+.distance {
+    font-size: 0.9rem;
+    color: #4a5568;
+}
+
+.info-right {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.conditions {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #2f855a;
+    margin: 0;
+}
+
+.care-level {
+    display: flex;
+    gap: 3px;
+}
+
+.care-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #e2e8f0;
+}
+
+.care-dot.active {
+    background: #48bb78;
+}
+
+.plant-size {
+    font-size: 0.9rem;
+    color: #2d3748;
+    font-weight: 600;
+}
+
+.price-action {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: space-between;
+}
+
+.free-rescue {
+    background: #2b6cb0;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 10px;
+    width: 40%;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.free-rescue:hover {
+    transform: scale(1.03);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+.rescue-btn {
+    background: #2f855a;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 700; /* Bolder as requested */
+    padding: 10px 16px; /* Larger padding for prominence */
+    border: none;
+    border-radius: 10px;
+    width: 55%;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.rescue-btn:hover {
+    transform: scale(1.03);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    background: #276749;
+}
+
+.timer {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #e53e3e;
+}
+
+/* Animations */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px)
+ {
+    .main-container {
+        grid-template-columns: 1fr;
+    }
+    .sidebar {
+        order: 2;
+    }
+    .plant-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    .plant-info, .info-left, .price-action {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .free-rescue, .rescue-btn {
+        width: 100%;
+    }
+    .plant-name { font-size: 1.1rem; }
+    .plant-species, .nursery-info, .price-tag, .distance { font-size: 0.8rem; }
+}
