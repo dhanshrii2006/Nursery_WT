@@ -1,0 +1,48 @@
+/* styles.css - Background video and button styles */
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  background: url('OIP.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+.bg-video {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  object-fit: cover;
+  pointer-events: none;
+}
+.top-right {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  display: flex;
+  gap: 15px;
+}
+.center-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.btn {
+  padding: 12px 28px;
+  border: none;
+  border-radius: 25px;
+  background: rgba(255,255,255,0.85);
+  color: #222;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn:hover {
+  background: #222;
+  color: #fff;
+}

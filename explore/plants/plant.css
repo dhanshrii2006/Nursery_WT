@@ -1,0 +1,70 @@
+/* plant.css - Styles for plant grid and cards */
+.plant-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 32px;
+  margin: 40px 0 32px 0;
+}
+.plant-card {
+  background: #f6f9f6;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 22px 16px 18px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.plant-card img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  background: #e0e0e0;
+}
+.plant-card h2 {
+  margin: 0 0 4px 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  text-align: center;
+}
+.plant-card p {
+  margin: 0 0 8px 0;
+  color: #444;
+  font-size: 0.98rem;
+  text-align: center;
+}
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.quantity-controls button {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: #e0e0e0;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.quantity-controls button:hover {
+  background: #bdbdbd;
+}
+.book-btn {
+  padding: 8px 20px;
+  border-radius: 20px;
+  background: #4caf50;
+  color: #fff;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.book-btn:hover {
+  background: #357a38;
+}
