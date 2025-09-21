@@ -1,19 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Background Video Page</title>
-		<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nursery E-Commerce</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!-- Top Moving Bar -->
+  <div class="top-bar">
+    <p>🌿 Free Delivery on Orders Above ₹499 | Fresh Plants, Happy Homes 🌿</p>
+  </div>
 
+  <!-- Header Section -->
+  <header class="header">
+    
+    <!-- Left Side Navigation -->
+    <nav class="nav-left">
+      <a href="#">Blog</a>
+    </nav>
 
-	<div class="top-right">
-		<a href="auth/login.html" class="btn">Login</a>
-	</div>
+    <!-- Center Logo (Text Logo instead of Image) -->
+    <div class="logo">
+      <h1>RESCUE99</h1>
+    </div>
 
-		<div class="center-btn">
-			<a href="explore/explore.html" class="btn">Explore</a>
-		</div>
+    <!-- Right Side Navigation -->
+    <nav class="nav-right">
+      <a href="#">Contact</a>
+      <a href="#">Login / Signup</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="slider">
+      <!-- Replace these with your own images -->
+      <div class="slide fade">
+        <img src="imgone.jpg" alt="Living Room Plants">
+      </div>
+      <div class="slide fade">
+        <img src="imgtwo.jpg" alt="Balcony Plants">
+      </div>
+      <div class="slide fade">
+        <img src="imgthree.jpg" alt="Office Desk Plants">
+      </div>
+    </div>
+
+    <!-- Text Overlay -->
+    <div class="hero-content">
+      <h1>Transform Your Space with Nature</h1>
+      <p>Not sure which plant suits you?</p>
+      <div class="buttons">
+        <a href="#" class="btn explore">🌱 Explore Plants</a>
+        <a href="#" class="btn find">🔍 Find My Plant</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Access Bar -->
+  <section class="quick-access">
+    <div class="quick-access-container">
+      <a href="help-center.html" class="quick-box">
+        <span class="icon">
+          <img src="help.jpg" alt="help">
+        </span>
+        <span class="text">Help Center</span>
+      </a>
+      <a href="track-order.html" class="quick-box">
+        <span class="icon">
+          <img src="tack.png" alt="track">
+        </span>
+        <span class="text">Track Order</span>
+      </a>
+      <a href="rewards.html" class="quick-box">
+        <span class="icon">
+          <img src="reward.png" alt="reward">
+        </span>
+        <span class="text">Rewards</span>
+      </a>
+      <a href="offers.html" class="quick-box">
+        <span class="icon">
+          <img src="offer.png" alt="offer">
+        </span>
+        <span class="text">Offers</span>
+      </a>
+    </div>
+  </section>
+
+  <script>
+    // Simple Auto-Slider
+    let slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+      let slides = document.getElementsByClassName("slide");
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      slideIndex++;
+      if (slideIndex > slides.length) {
+        slideIndex = 1;
+      }
+      slides[slideIndex-1].style.display = "block";
+      setTimeout(showSlides, 4000); // Change image every 4 seconds
+    }
+  </script>
+
 </body>
 </html>
