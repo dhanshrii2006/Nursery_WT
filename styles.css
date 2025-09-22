@@ -7,7 +7,7 @@
 
 body {
   font-family: Arial, sans-serif;
-  margin-top: 45px; /* Fixed margin to account for fixed top bar */
+  margin-top: 70px; /* Increased from 45px to account for larger top bar */
 }
 
 /* Top Moving Bar */
@@ -15,7 +15,7 @@ body {
   background-color: #4CAF50; /* Green background */
   color: black; /* Black text */
   text-align: center;
-  padding: 8px 0;
+  padding: 15px 0; /* Increased from 8px to 15px */
   position: fixed;
   top: 0;
   width: 100%;
@@ -28,6 +28,7 @@ body {
   white-space: nowrap;
   animation: slideText 10s linear infinite;
   font-weight: bold;
+  font-size: 18px; /* Added larger font size */
 }
 
 /* Text slide animation */
@@ -41,15 +42,16 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 50px;
+  padding: 35px 50px; /* Increased from 20px to 35px */
   background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%); /* Subtle gradient background */
   border-bottom: 3px solid #4CAF50; /* Green accent border */
   box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+  min-height: 90px; /* Added minimum height for consistency */
 }
 
 /* Text Logo Styling */
 .logo h1 {
-  font-size: 32px;
+  font-size: 40px; /* Increased from 32px */
   font-weight: bold;
   color: #2e7d32; /* Green shade for nursery theme */
   margin: 0;
@@ -64,17 +66,25 @@ body {
 .header nav a {
   text-decoration: none;
   color: #333; /* Dark text */
-  font-size: 19px;
+  font-size: 21px; /* Increased from 19px */
   font-weight: 500;
-  margin: 0 15px;
+  margin: 0 20px; /* Increased from 15px */
+  padding: 12px 20px; /* Added padding for better clickable area */
+  border-radius: 8px; /* Added border radius */
+  transition: background-color 0.3s ease; /* Added transition */
+}
+
+.header nav a:hover {
+  background-color: rgba(76, 175, 80, 0.1); /* Added hover effect */
 }
 
 /* Hero Section */
 .hero {
   position: relative;
   width: 100%;
-  height: 100vh; /* full screen height */
+  height: 80vh; /* Reduced from 100vh for better proportions */
   overflow: hidden;
+  min-height: 600px; /* Ensure minimum height */
 }
 
 /* Slider Images */
@@ -86,8 +96,9 @@ body {
 
 .slide img {
   width: 100%;
-  height: 100vh;
+  height: 80vh; /* Match the hero height */
   object-fit: cover; /* Cover screen nicely */
+  min-height: 600px; /* Ensure minimum height */
 }
 
 /* Text Overlay */
@@ -97,53 +108,75 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  color: #333; /* Fixed dark color for consistency */
-  text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+  color: white; /* Changed to white for better visibility */
+  text-shadow: 3px 3px 8px rgba(0,0,0,0.8); /* Stronger text shadow */
+  background-color: rgba(0,0,0,0.3); /* Semi-transparent background */
+  padding: 40px;
+  border-radius: 15px;
+  backdrop-filter: blur(5px); /* Modern blur effect */
 }
 
 .hero-content h1 {
-  font-size: 3rem;
-  margin-bottom: 10px;
+  font-size: 4rem; /* Increased from 3rem */
+  margin-bottom: 15px;
+  font-weight: bold;
+  letter-spacing: 2px;
 }
 
 .hero-content p {
-  font-size: 1.2rem;
-  margin-bottom: 20px;
+  font-size: 1.5rem; /* Increased from 1.2rem */
+  margin-bottom: 30px;
+  font-weight: 500;
 }
 
 /* Buttons */
 .buttons {
   display: flex;
   justify-content: center;
-  gap: 15px;
+  gap: 25px; /* Increased gap */
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
 }
 
 .btn {
   text-decoration: none;
-  padding: 12px 25px;
-  font-size: 1rem;
-  border-radius: 25px;
-  transition: 0.3s;
+  padding: 18px 35px; /* Increased padding significantly */
+  font-size: 1.3rem; /* Increased font size */
+  border-radius: 30px; /* More rounded */
+  transition: all 0.3s ease;
   font-weight: bold;
+  min-width: 180px; /* Minimum width for consistency */
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* Added shadow */
 }
 
 /* Explore Button - Light Green */
 .btn.explore {
-  background-color: #81C784; /* Light green background */
-  color: #333; /* Dark text for contrast */
+  background-color: #66BB6A; /* Slightly more vibrant green */
+  color: white; /* Changed to white for better contrast */
+  border: 2px solid #66BB6A;
 }
 
 /* Find Button - White */
 .btn.find {
   background-color: white;
   color: #333; /* Dark text for contrast */
-  border: 2px solid #333;
+  border: 2px solid white;
 }
 
 /* Hover Effects */
 .btn:hover {
-  transform: scale(1.05);
-  opacity: 0.9;
+  transform: scale(1.08); /* Slightly more pronounced hover */
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3); /* Enhanced shadow on hover */
+}
+
+.btn.explore:hover {
+  background-color: #4CAF50;
+  border-color: #4CAF50;
+}
+
+.btn.find:hover {
+  background-color: #f8f9fa;
+  transform: scale(1.08);
 }
 
 /* Quick Access Bar */
@@ -187,4 +220,70 @@ body {
 .quick-box .text {
   font-weight: bold;
   font-size: 14px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-content {
+    padding: 20px;
+    margin: 0 20px;
+  }
+  
+  .hero-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+  
+  .buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .btn {
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    width: 100%;
+    max-width: 250px;
+  }
+  
+  .hero {
+    height: 70vh;
+    min-height: 500px;
+  }
+  
+  .slide img {
+    height: 70vh;
+    min-height: 500px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  
+  .hero-content p {
+    font-size: 1rem;
+  }
+  
+  .btn {
+    padding: 12px 25px;
+    font-size: 1rem;
+  }
+  
+  .hero {
+    height: 60vh;
+    min-height: 400px;
+  }
+  
+  .slide img {
+    height: 60vh;
+    min-height: 400px;
+  }
 }
