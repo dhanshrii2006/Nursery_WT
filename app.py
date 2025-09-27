@@ -155,6 +155,17 @@ def logout():
     </div>
     """
 
+
+# Route for explore.html
+@app.route('/explore/explore.html')
+def explore():
+    return render_template('../explore/explore.html')
+
+# Route for find.html
+@app.route('/explore/find.html')
+def find():
+    return render_template('../explore/find.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
 
