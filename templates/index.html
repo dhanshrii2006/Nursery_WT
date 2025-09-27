@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nursery E-Commerce</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <!-- Main CSS served by Flask -->
 </head>
 <body>
   <!-- Top Moving Bar -->
@@ -28,7 +29,8 @@
     <!-- Right Side Navigation -->
     <nav class="nav-right">
       <a href="#">Contact</a>
-      <a href="auth\register.html">Register</a>
+      <a href="/login">Login</a> <!-- goes to flask login route -->
+      <a href="/register">Register</a> <!-- goes to flask register route -->
     </nav>
   </header>
 
@@ -37,13 +39,13 @@
     <div class="slider">
       <!-- Replace these with your own images -->
       <div class="slide fade">
-        <img src="img\imgone.jpg" alt="Living Room Plants">
+        <img src="{{ url_for('static', filename='img/imgone.jpg') }}" alt="Living Room Plants">
       </div>
       <div class="slide fade">
-        <img src="img\imgtwo.jpg" alt="Balcony Plants">
+        <img src="{{ url_for('static', filename='img/imgtwo.jpg') }}" alt="Balcony Plants">
       </div>
       <div class="slide fade">
-        <img src="img\imgthree.jpg" alt="Office Desk Plants">
+        <img src="{{ url_for('static', filename='img/imgthree.jpg') }}" alt="Office Desk Plants">
       </div>
     </div>
 
@@ -52,7 +54,7 @@
       <h1>Transform Your Space with Nature</h1>
       <p>Not sure which plant suits you?</p>
       <div class="buttons">
-        <a href="#" class="btn explore">🌱 Explore Plants</a>
+        <a href="explore/plants/plants.html" class="btn explore">🌱 Explore Plants</a>
         <a href="#" class="btn find">🔍 Find My Plant</a>
       </div>
     </div>
@@ -63,25 +65,25 @@
     <div class="quick-access-container">
       <a href="help-center.html" class="quick-box">
         <span class="icon">
-          <img src="img\help.jpg" alt="help">
+          <img src="img/help.jpg" alt="help">
         </span>
         <span class="text">Help Center</span>
       </a>
       <a href="track-order.html" class="quick-box">
         <span class="icon">
-          <img src="img\tack.png" alt="track">
+          <img src="img/tack.png" alt="track">
         </span>
         <span class="text">Track Order</span>
       </a>
       <a href="rewards.html" class="quick-box">
         <span class="icon">
-          <img src="img\reward.png" alt="reward">
+          <img src="img/reward.png" alt="reward">
         </span>
         <span class="text">Rewards</span>
       </a>
       <a href="offers.html" class="quick-box">
         <span class="icon">
-          <img src="img\offer.png" alt="offer">
+          <img src="img/offer.png" alt="offer">
         </span>
         <span class="text">Offers</span>
       </a>
