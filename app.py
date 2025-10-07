@@ -1,32 +1,35 @@
 from flask import Flask, render_template, request, redirect, url_for, session, send_from_directory
 import sqlite3
 import os
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
-app.secret_key = '1234567890'  # Needed for session management
+
+# Use environment variable for secret key in production, fallback for development
+app.secret_key = os.environ.get('SECRET_KEY', '1234567890-change-this-in-production')
 
 
-# Routes to serve static files
-# @app.route('/styles.css')
-# def serve_css():
-    # return send_from_directory('.', 'styles.css')
-# 
-# @app.route('/img/<filename>')
-# def serve_images(filename):
-    # return send_from_directory('img', filename)
-# 
-@app.route('/templates/<filename>')
-def serve_templates(filename):
-    return send_from_directory('templates', filename)
+# Static files are automatically served by Flask from /static/ directory
+# No need for custom routes
 
 
 
 
+
+def get_db_path():
+    """Get the database path, ensuring it's in a writable location for Render"""
+    if os.environ.get('RENDER'):
+        # On Render, use /tmp for writable storage (note: this is temporary)
+        return '/tmp/database.db'
+    else:
+        # Local development
+        return 'database.db'
 
 def init_database():
     """Initialize the database and create tables if they don't exist"""
     try:
-        connection = sqlite3.connect('database.db')
+        db_path = get_db_path()
+        connection = sqlite3.connect(db_path)
         cursor = connection.cursor()
 
         cursor.execute('''
@@ -42,7 +45,7 @@ def init_database():
 
         connection.commit()
         connection.close()
-        print("Database and users table created successfully!")
+        print(f"Database and users table created successfully at {db_path}!")
     except Exception as e:
         print(f"Error initializing database: {e}")
 
@@ -76,11 +79,15 @@ def register():
 
         # Connect to database and insert user
         try:
-            conn = sqlite3.connect('database.db')
+            # Hash the password for security
+            hashed_password = generate_password_hash(password)
+            
+            db_path = get_db_path()
+            conn = sqlite3.connect(db_path)
             cursor = conn.cursor()
             cursor.execute(
                 "INSERT INTO users (name, email, phone, address, password) VALUES (?, ?, ?, ?, ?)",
-                 (request.form['name'], request.form['email'], request.form['phone'], request.form['address'], request.form['password'])
+                 (name, email, phone, address, hashed_password)
             )
             conn.commit()
             conn.close()
@@ -114,13 +121,14 @@ def login():
         email = request.form['email']
         password = request.form['password']
 
-        conn = sqlite3.connect('database.db')
+        db_path = get_db_path()
+        conn = sqlite3.connect(db_path)
         cursor = conn.cursor()
         cursor.execute("SELECT id, name, password FROM users WHERE email = ? ", (email,))
         user = cursor.fetchone()
         conn.close()
 
-        if user and user[2] == password:
+        if user and check_password_hash(user[2], password):
             session['user_id'] = user[0]
             session['user_name'] = user[1]
             return """
@@ -167,6 +175,9 @@ def find():
     return render_template('../explore/find.html')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # Only run in debug mode for local development
+    debug_mode = not os.environ.get('RENDER')
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=debug_mode)
 
     
