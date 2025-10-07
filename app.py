@@ -159,7 +159,7 @@ def logout():
 # Route for explore.html
 @app.route('/explore/explore.html')
 def explore():
-    return render_template('../explore/explore.html')
+    return render_template('explore.html')
 
 # Route for find.html
 @app.route('/explore/find.html')
