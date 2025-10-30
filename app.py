@@ -41,7 +41,22 @@ init_database()
 @app.route('/')
 def home():
     user_name = session.get('user_name')  # None if not logged in
-    return render_template('index.html', user_name=user_name)
+    
+    # Image data
+    slider_images = [
+        {'src': url_for('static', filename='img/imgone.jpg'), 'alt': 'Living Room Plants'},
+        {'src': url_for('static', filename='img/imgtwo.jpg'), 'alt': 'Balcony Plants'},
+        {'src': url_for('static', filename='img/imgthree.jpg'), 'alt': 'Office Desk Plants'}
+    ]
+    
+    quick_access_items = [
+        {'href': 'help-center.html', 'img': url_for('static', filename='img/help.jpg'), 'alt': 'help', 'text': 'Help Center'},
+        {'href': 'track-order.html', 'img': url_for('static', filename='img/tack.png'), 'alt': 'track', 'text': 'Track Order'},
+        {'href': 'rewards.html', 'img': url_for('static', filename='img/reward.png'), 'alt': 'reward', 'text': 'Rewards'},
+        {'href': 'offers.html', 'img': url_for('static', filename='img/offer.png'), 'alt': 'offer', 'text': 'Offers'}
+    ]
+    
+    return render_template('index.html', user_name=user_name, slider_images=slider_images, quick_access_items=quick_access_items)
 
 
 # -------- REGISTER --------
