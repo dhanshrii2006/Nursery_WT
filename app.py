@@ -41,6 +41,7 @@ init_database()
 @app.route('/')
 def home():
     user_name = session.get('user_name')  # None if not logged in
+    # Pass user_name to index.html
     return render_template('index.html', user_name=user_name)
 
 
@@ -77,6 +78,7 @@ def register():
         except Exception as e:
             return f"<h2 style='color:red;'>Error: {e}</h2>"
 
+    # GET request just shows the register page
     return render_template('register.html')
 
 # -------- LOGIN --------
@@ -96,15 +98,27 @@ def login():
         if user and user[2] == password:
             session['user_id'] = user[0]
             session['user_name'] = user[1]
-            return redirect(url_for('home'))  # ✅ redirect to index
+            # ✅ Redirect to the explore page on successful login
+            return redirect(url_for('explore'))
         else:
             return """
             <h2 style='color:red;'>❌ Login Failed</h2>
             <a href='/login'>Try Again</a>
             """
 
+    # GET request just shows the login page
     return render_template('login.html')
 
+# -------- NEW EXPLORE ROUTE --------
+@app.route('/explore')
+def explore():
+    # Protect this route: if 'user_id' is not in session, redirect to login
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+        
+    # User is logged in, get their name and show the explore page
+    user_name = session.get('user_name')
+    return render_template('explore.html', user_name=user_name)
 
 # -------- LOGOUT --------
 @app.route('/logout')

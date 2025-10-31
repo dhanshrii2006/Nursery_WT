@@ -46,16 +46,12 @@
   <!-- Hero Section -->
   <section class="hero">
     <div class="slider">
-      <!-- Replace these with your own images -->
+      <!-- Images from Flask -->
+      {% for image in slider_images %}
       <div class="slide fade">
-        <img src="{{ url_for('static', filename='img/imgone.jpg') }}" alt="Living Room Plants">
+        <img src="{{ image.src }}" alt="{{ image.alt }}">
       </div>
-      <div class="slide fade">
-        <img src="{{ url_for('static', filename='img/imgtwo.jpg') }}" alt="Balcony Plants">
-      </div>
-      <div class="slide fade">
-        <img src="{{ url_for('static', filename='img/imgthree.jpg') }}" alt="Office Desk Plants">
-      </div>
+      {% endfor %}
     </div>
 
     <!-- Text Overlay -->
@@ -72,30 +68,14 @@
   <!-- Quick Access Bar -->
   <section class="quick-access">
     <div class="quick-access-container">
-      <a href="help-center.html" class="quick-box">
+      {% for item in quick_access_items %}
+      <a href="{{ item.href }}" class="quick-box">
         <span class="icon">
-          <img src="img/help.jpg" alt="help">
+          <img src="{{ item.img }}" alt="{{ item.alt }}">
         </span>
-        <span class="text">Help Center</span>
+        <span class="text">{{ item.text }}</span>
       </a>
-      <a href="track-order.html" class="quick-box">
-        <span class="icon">
-          <img src="img/tack.png" alt="track">
-        </span>
-        <span class="text">Track Order</span>
-      </a>
-      <a href="rewards.html" class="quick-box">
-        <span class="icon">
-          <img src="img/reward.png" alt="reward">
-        </span>
-        <span class="text">Rewards</span>
-      </a>
-      <a href="offers.html" class="quick-box">
-        <span class="icon">
-          <img src="img/offer.png" alt="offer">
-        </span>
-        <span class="text">Offers</span>
-      </a>
+      {% endfor %}
     </div>
   </section>
 
