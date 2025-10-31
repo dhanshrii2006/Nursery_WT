@@ -3,96 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Explore Plants</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='explore.css') }}">
+    <title>Explore | Nursery Rescue</title>
+    <link rel="stylesheet" href="explore.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+
     <header>
-        <h1>Explore Plants</h1>
+        <h1>Rescue Me</h1>
+        <nav class="topbar">
+            <ul>
+                <li><a href="#live-plants" class="nav-link active">🌿 Live Plants</a></li>
+                <li><a href="#fertilizers" class="nav-link">💊 Fertilizers</a></li>
+                <li><a href="#pots-planters" class="nav-link">🏺 Pots & Planters</a></li>
+                <li><a href="#plant-guide" class="nav-link">📚 Plant Guide</a></li>
+            </ul>
+        </nav>
     </header>
-    <div class="search-container" style="text-align:center; margin: 30px 0;">
-        <input type="text" placeholder="Search for plants..." style="padding: 10px; width: 300px; font-size: 16px;">
-        <button style="padding: 10px 20px; font-size: 16px;">Search</button>
-    </div>
-    <div class="plant-cards-container">
-        <!-- Plant Card 1 -->
-        <div class="plant-card">
-            <a href="#"><img src="../explore/plants/plant_img/plant1.jpg" alt="Plant 1"></a>
-            <h3>Aloe Vera</h3>
-            <div><span style="font-weight: bold;">₹199</span></div>
-            <div style="font-size: 14px;">Nutrient-rich general purpose sell</div>
-            <div style="width: 100%; display: flex; align-items: center; margin-bottom: 8px;">
-                <span style="font-size: 18px; color: #e65100; margin-right: 6px;">&#x23F0;</span>
-                <span style="font-size: 15px; color: #e65100;">Rescue now</span>
+
+    <main>
+        <section id="live-plants" class="content-section active">
+            <div class="search-container">
+                <input type="text" placeholder="Search for plants...">
+                <button>Search</button>
             </div>
-            <div style="width: 100%; display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 10px;">
-                <button onclick="changeQty('qty1', 1)">+1</button>
-                <span id="qty1">0</span>
-                <button onclick="changeQty('qty1', -1)">-1</button>
-                <button>Rescue</button>
+            <div class="plant-cards-container">
+                <div class="plant-card clickable-card">
+                    <img src="imgg1.webp" alt="Aloe Vera">
+                    <h3>Aloe Vera</h3>
+                    <div class="price">₹199</div>
+                    <div class="description">A hardy succulent, great for skincare.</div>
+                    <div class="rescue-timer">
+                        <span class="timer-icon">&#x23F0;</span>
+                        <span>Rescue now</span>
+                    </div>
+                    <div class="controls">
+                        <button onclick="changeQty('qty1', -1)" class="qty-btn minus">-</button>
+                        <span id="qty1" class="qty-display">0</span>
+                        <button onclick="changeQty('qty1', 1)" class="qty-btn plus">+</button>
+                        <button class="rescue-btn">Rescue</button>
+                    </div>
+                </div>
+                <div class="plant-card">
+                    <img src="imgg2.jpg" alt="Snake Plant">
+                    <h3>Snake Plant</h3>
+                    <div class="price">₹249</div>
+                    <div class="description">Air-purifying and incredibly low-maintenance.</div>
+                    <div class="rescue-timer">
+                        <span class="timer-icon">&#x23F0;</span>
+                        <span>Rescue now</span>
+                    </div>
+                    <div class="controls">
+                        <button onclick="changeQty('qty2', -1)" class="qty-btn minus">-</button>
+                        <span id="qty2" class="qty-display">0</span>
+                        <button onclick="changeQty('qty2', 1)" class="qty-btn plus">+</button>
+                        <button class="rescue-btn">Rescue</button>
+                    </div>
+                </div>
+                <div class="plant-card">
+                    <img src="imgg3.avif" alt="Peace Lily">
+                    <h3>Peace Lily</h3>
+                    <div class="price">₹299</div>
+                    <div class="description">Elegant white blooms and glossy leaves.</div>
+                    <div class="rescue-timer">
+                        <span class="timer-icon">&#x23F0;</span>
+                        <span>Rescue now</span>
+                    </div>
+                    <div class="controls">
+                        <button onclick="changeQty('qty3', -1)" class="qty-btn minus">-</button>
+                        <span id="qty3" class="qty-display">0</span>
+                        <button onclick="changeQty('qty3', 1)" class="qty-btn plus">+</button>
+                        <button class="rescue-btn">Rescue</button>
+                    </div>
+                </div>
+                <div class="plant-card">
+                    <img src="imgg4.jpg" alt="Money Plant">
+                    <h3>Money Plant</h3>
+                    <div class="price">₹179</div>
+                    <div class="description">Brings good fortune and purifies the air.</div>
+                    <div class="rescue-timer">
+                        <span class="timer-icon">&#x23F0;</span>
+                        <span>Rescue now</span>
+                    </div>
+                    <div class="controls">
+                        <button onclick="changeQty('qty4', -1)" class="qty-btn minus">-</button>
+                        <span id="qty4" class="qty-display">0</span>
+                        <button onclick="changeQty('qty4', 1)" class="qty-btn plus">+</button>
+                        <button class="rescue-btn">Rescue</button>
+                    </div>
+                </div>
             </div>
-        </div>
-        <!-- Plant Card 2 -->
-        <div class="plant-card">
-            <a href="#"><img src="../explore/plants/plant_img/plant2.jpg" alt="Plant 2"></a>
-            <h3>Snake Plant</h3>
-            <div><span style="font-weight: bold;">₹249</span></div>
-            <div style="font-size: 14px;">Nutrient-rich general purpose sell</div>
-            <div style="width: 100%; display: flex; align-items: center; margin-bottom: 8px;">
-                <span style="font-size: 18px; color: #e65100; margin-right: 6px;">&#x23F0;</span>
-                <span style="font-size: 15px; color: #e65100;">Rescue now</span>
+        </section>
+
+        <section id="fertilizers" class="content-section">
+            <div class="plant-cards-container">
+                 <div class="plant-card">
+                    <img src="https://i.imgur.com/uEV9dFf.jpeg" alt="Liquid Fertilizer">
+                    <h3>All-Purpose Liquid Feed</h3>
+                    <div class="price">₹149</div>
+                    <div class="description">Quickly provides essential nutrients.</div>
+                    <div class="rescue-timer">
+                        <span class="timer-icon">&#x23F0;</span>
+                        <span>Buy now</span>
+                    </div>
+                    <div class="controls">
+                        <button onclick="changeQty('qty5', -1)" class="qty-btn minus">-</button>
+                        <span id="qty5" class="qty-display">0</span>
+                        <button onclick="changeQty('qty5', 1)" class="qty-btn plus">+</button>
+                        <button class="rescue-btn">Add to Cart</button>
+                    </div>
+                </div>
             </div>
-            <div style="width: 100%; display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 10px;">
-                <button onclick="changeQty('qty2', 1)">+1</button>
-                <span id="qty2">0</span>
-                <button onclick="changeQty('qty2', -1)">-1</button>
-                <button>Rescue</button>
+        </section>
+
+        <section id="pots-planters" class="content-section">
+            <div class="plant-cards-container">
+                <div class="plant-card">
+                    <img src="https://i.imgur.com/s4a3tFA.jpeg" alt="Terracotta Pot">
+                    <h3>Classic Terracotta Pot</h3>
+                    <div class="price">₹99</div>
+                    <div class="description">Porous clay allows roots to breathe.</div>
+                    <div class="rescue-timer">
+                        <span class="timer-icon">&#x23F0;</span>
+                        <span>Buy now</span>
+                    </div>
+                    <div class="controls">
+                        <button onclick="changeQty('qty6', -1)" class="qty-btn minus">-</button>
+                        <span id="qty6" class="qty-display">0</span>
+                        <button onclick="changeQty('qty6', 1)" class="qty-btn plus">+</button>
+                        <button class="rescue-btn">Add to Cart</button>
+                    </div>
+                </div>
             </div>
-        </div>
-        <!-- Plant Card 3 -->
-        <div class="plant-card">
-            <a href="#"><img src="../explore/plants/plant_img/plant3.jpg" alt="Plant 3"></a>
-            <h3>Peace Lily</h3>
-            <div><span style="font-weight: bold;">₹299</span></div>
-            <div style="font-size: 14px;">Nutrient-rich general purpose sell</div>
-            <div style="width: 100%; display: flex; align-items: center; margin-bottom: 8px;">
-                <span style="font-size: 18px; color: #e65100; margin-right: 6px;">&#x23F0;</span>
-                <span style="font-size: 15px; color: #e65100;">Rescue now</span>
+        </section>
+
+        <section id="plant-guide" class="content-section">
+            <div class="guide-container">
+                <article class="blog-post">
+                    <h3>How often should I water my rescue plant?</h3>
+                    <p>There's no single answer! The best way is the "finger test." Stick your finger about an inch into the soil. If it feels dry, it's time to water. If it's damp, wait a few more days. Overwatering is the most common way to kill a houseplant, so it's better to be a little too dry than too wet.</p>
+                </article>
+                <article class="blog-post">
+                    <h3>What does "bright, indirect light" actually mean?</h3>
+                    <p>Imagine the spot where you can comfortably read a book during the day without needing a lamp. That's bright, indirect light. It's usually found near an east-facing window or a few feet back from a sunny south or west-facing window. Direct sunbeams can scorch the leaves of many indoor plants.</p>
+                </article>
             </div>
-            <div style="width: 100%; display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 10px;">
-                <button onclick="changeQty('qty3', 1)">+1</button>
-                <span id="qty3">0</span>
-                <button onclick="changeQty('qty3', -1)">-1</button>
-                <button>Rescue</button>
-            </div>
-        </div>
-        <!-- Plant Card 4 -->
-        <div class="plant-card">
-            <a href="#"><img src="../explore/plants/plant_img/plant4.jpg" alt="Plant 4"></a>
-            <h3>Money Plant</h3>
-            <div><span style="font-weight: bold;">₹179</span></div>
-            <div style="font-size: 14px;">Nutrient-rich general purpose sell</div>
-            <div style="width: 100%; display: flex; align-items: center; margin-bottom: 8px;">
-                <span style="font-size: 18px; color: #e65100; margin-right: 6px;">&#x23F0;</span>
-                <span style="font-size: 15px; color: #e65100;">Rescue now</span>
-            </div>
-            <div style="width: 100%; display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 10px;">
-                <button onclick="changeQty('qty4', 1)">+1</button>
-                <span id="qty4">0</span>
-                <button onclick="changeQty('qty4', -1)">-1</button>
-                <button>Rescue</button>
-            </div>
-        </div>
-    </div>
-    <script>
-    function changeQty(id, delta) {
-        var el = document.getElementById(id);
-        var val = parseInt(el.textContent);
-        val = isNaN(val) ? 0 : val;
-        val += delta;
-        if (val < 0) val = 0;
-        el.textContent = val;
-    }
-    </script>
+        </section>
+    </main>
+
+    <script src="explore.js"></script>
 </body>
 </html>
