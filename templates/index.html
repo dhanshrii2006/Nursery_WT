@@ -1,103 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nursery E-Commerce</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-  <!-- Main CSS served by Flask -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nursery - Transform Your Space with Nature</title>
+    <link rel="stylesheet" href="../static/styles.css">
 </head>
-
 <body>
-  <!-- Top Moving Bar -->
-  <div class="top-bar">
-    <p>🌿 Free Delivery on Orders Above ₹499 | Fresh Plants, Happy Homes 🌿</p>
-  </div>
-
-  <!-- Header Section -->
-  <header class="header">
-
-    <!-- Left Side Navigation -->
-    <nav class="nav-left">
-      <a href="#">Blog</a>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">🌿 Nursery</div>
+            <ul class="navbar-links">
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
     </nav>
 
-    <!-- Center Logo (Text Logo instead of Image) -->
-    <div class="logo">
-      <h1>RESCUE99</h1>
+    <!-- SLIDESHOW SECTION -->
+    <div class="slideshow-container">
+        <div class="slideshow">
+            <img class="slide fade" src="../explore/img/imgg1.webp" alt="Plant 1">
+            <img class="slide fade" src="../explore/img/imgg2.jpg" alt="Plant 2">
+            <img class="slide fade" src="../explore/img/imgg3.avif" alt="Plant 3">
+            <img class="slide fade" src="../explore/img/imgg4.jpg" alt="Plant 4">
+        </div>
+
+        <!-- HERO BOX OVERLAY -->
+        <div class="hero-box">
+            <h1>Transform Your Space with Nature</h1>
+            <div class="hero-buttons">
+                <button class="btn-primary" onclick="window.location.href='explore.html'">Explore Plants</button>
+                <button class="btn-secondary" onclick="alert('Find Me Plant feature coming soon!')">Find Me Plant</button>
+            </div>
+        </div>
     </div>
 
-    <!-- Right Side Navigation -->
-   <!-- Right Side Navigation -->
-<nav class="nav-right">
-  <a href="#">Contact</a>
-  {% if user_name %}
-    <span style="margin-right: 15px;">👋 Hello, {{ user_name }}</span>
-    <a href="/logout">Logout</a>
-  {% else %}
-    <a href="/login">Login</a>
-    <a href="/register">Register</a>
-  {% endif %}
-</nav>
-
-  </header>
-
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="slider">
-      <!-- Images from Flask -->
-      {% for image in slider_images %}
-      <div class="slide fade">
-        <img src="{{ image.src }}" alt="{{ image.alt }}">
-      </div>
-      {% endfor %}
+    <!-- 4 ITEMS SECTION -->
+    <div class="items-section">
+        <div class="item">
+            <img src="../explore/img/imgg1.webp" alt="Help">
+            <button class="item-btn" onclick="window.location.href='help.html'">Help</button>
+        </div>
+        <div class="item">
+            <img src="../explore/img/imgg2.jpg" alt="Offer">
+            <button class="item-btn" onclick="window.location.href='offer.html'">Offer</button>
+        </div>
+        <div class="item">
+            <img src="../explore/img/imgg3.avif" alt="Reward">
+            <button class="item-btn" onclick="window.location.href='reward.html'">Reward</button>
+        </div>
+        <div class="item">
+            <img src="../explore/img/imgg4.jpg" alt="Track">
+            <button class="item-btn" onclick="window.location.href='track.html'">Track</button>
+        </div>
     </div>
 
-    <!-- Text Overlay -->
-    <div class="hero-content">
-      <h1>Transform Your Space with Nature</h1>
-      <p>Not sure which plant suits you?</p>
-      <div class="buttons">
-        <a href="/explore" class="btn explore">🌱 Explore Plants</a>
-        <a href="#" class="btn find">🔍 Find My Plant</a>
-      </div>
-    </div>
-  </section>
+    <script>
+        let slideIndex = 0;
+      
+        let slideTimer;
 
-  <!-- Quick Access Bar -->
-  <section class="quick-access">
-    <div class="quick-access-container">
-      {% for item in quick_access_items %}
-      <a href="{{ item.href }}" class="quick-box">
-        <span class="icon">
-          <img src="{{ item.img }}" alt="{{ item.alt }}">
-        </span>
-        <span class="text">{{ item.text }}</span>
-      </a>
-      {% endfor %}
-    </div>
-  </section>
+        function showSlides() {
+            let slides = document.querySelectorAll('.slide');
+            
+            slides.forEach(slide => slide.style.display = 'none');
+            
+            slideIndex++;
+            if (slideIndex > slides.length) {
+                slideIndex = 1;
+            }
+            
+            slides[slideIndex - 1].style.display = 'block';
+            slideTimer = setTimeout(showSlides, 3000);
+        }
 
-  <script>
-    // Simple Auto-Slider
-    let slideIndex = 0;
-    showSlides();
-
-    function showSlides() {
-      let slides = document.getElementsByClassName("slide");
-      for (let i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-      }
-      slideIndex++;
-      if (slideIndex > slides.length) {
-        slideIndex = 1;
-      }
-      slides[slideIndex - 1].style.display = "block";
-      setTimeout(showSlides, 4000); // Change image every 4 seconds
-    }
-  </script>
-
+        // Start slideshow when page loads
+        window.addEventListener('load', showSlides);
+    </script>
 </body>
-
 </html>
