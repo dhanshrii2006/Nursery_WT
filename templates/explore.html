@@ -3,156 +3,473 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Explore | Nursery Rescue</title>
-    <link rel="stylesheet" href="explore.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <title>Explore Plants | RESCUE99</title>
+    
+    <style>
+        /* --- Basic Setup --- */
+        :root {
+            --primary-color: #2a9d8f;
+            --light-gray: #f4f4f4;
+            --dark-text: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #fdfdfd;
+            color: var(--dark-text);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* --- Top Header --- */
+        .top-header {
+            background-color: white;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--light-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .top-header .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .top-header-right {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .top-header-right a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: opacity 0.2s;
+        }
+
+        .top-header-right a:hover {
+            opacity: 0.7;
+        }
+
+        .cart-icon-wrapper {
+            position: relative;
+            font-size: 1.75rem;
+            cursor: pointer;
+        }
+
+        #cart-item-count {
+            position: absolute;
+            top: -8px;
+            right: -12px;
+            background-color: red;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: bold;
+            border-radius: 50%;
+            padding: 2px 6px;
+            line-height: 1;
+        }
+
+        /* --- Category Navigation --- */
+        .category-nav {
+            background-color: var(--primary-color);
+            padding: 0;
+        }
+
+        .category-nav .container {
+            display: flex;
+            gap: 0;
+        }
+
+        .category-nav a {
+            color: white;
+            text-decoration: none;
+            padding: 1rem 1.5rem;
+            font-weight: bold;
+            transition: background-color 0.2s;
+            border-bottom: 3px solid transparent;
+            flex: 1;
+            text-align: center;
+        }
+
+        .category-nav a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .category-nav a.active {
+            border-bottom: 3px solid white;
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- Page Content --- */
+        .page-content {
+            padding: 2rem 1rem;
+        }
+
+        .page-title {
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 1rem;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        /* --- Product Card --- */
+        .product-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            background-color: #f0f0f0;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--dark-text);
+        }
+
+        .product-price {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            margin-top: auto;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .add-to-cart-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1rem;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            flex: 1;
+            transition: background-color 0.2s;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: #238a7e;
+        }
+
+        .quantity-controls {
+            display: flex;
+            gap: 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .quantity-btn {
+            background: #f0f0f0;
+            border: none;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+
+        .quantity-btn:hover {
+            background: #e0e0e0;
+        }
+
+        .quantity-display {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            font-weight: bold;
+        }
+
+        /* --- Cart Modal --- */
+        .cart-modal {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 100%;
+            max-width: 400px;
+            height: 100vh;
+            background-color: white;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+            z-index: 1001;
+            transition: right 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-modal.visible {
+            right: 0;
+        }
+
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .cart-overlay.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .cart-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .cart-close-btn {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .cart-items-container {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .cart-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .cart-item-details {
+            flex-grow: 1;
+        }
+
+        .cart-item-name {
+            font-weight: bold;
+            margin-bottom: 0.25rem;
+        }
+
+        .cart-item-price {
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .cart-item-controls {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .quantity-control-mini {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+
+        .quantity-control-mini button {
+            background: #f0f0f0;
+            border: none;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .quantity-control-mini button:hover {
+            background: #e0e0e0;
+        }
+
+        .quantity-control-mini span {
+            padding: 0 0.5rem;
+            font-weight: bold;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .remove-btn {
+            background: none;
+            border: none;
+            color: red;
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+
+        .cart-empty {
+            padding: 2rem;
+            text-align: center;
+            color: #999;
+        }
+
+        .cart-footer {
+            padding: 1.5rem;
+            border-top: 2px solid var(--light-gray);
+            background-color: #f9f9f9;
+        }
+
+        .cart-total {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        #checkout-btn {
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        #checkout-btn:hover {
+            background-color: #238a7e;
+        }
+
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 1rem;
+            }
+
+            .category-nav .container {
+                flex-wrap: wrap;
+            }
+
+            .category-nav a {
+                flex: none;
+                min-width: 150px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <header>
-        <h1>Rescue Me</h1>
-        <nav class="topbar">
-            <ul>
-                <li><a href="#live-plants" class="nav-link active">🌿 Live Plants</a></li>
-                <li><a href="#fertilizers" class="nav-link">💊 Fertilizers</a></li>
-                <li><a href="#pots-planters" class="nav-link">🏺 Pots & Planters</a></li>
-                <li><a href="#plant-guide" class="nav-link">📚 Plant Guide</a></li>
-            </ul>
-        </nav>
+    <!-- Top Header -->
+    <header class="top-header">
+        <div class="logo">🌿 RESCUE99</div>
+        <div class="top-header-right">
+            <a href="/">← Back to Home</a>
+            <div class="cart-icon-wrapper" id="cart-toggle">
+                🛒
+                <span id="cart-item-count">0</span>
+            </div>
+        </div>
     </header>
 
-    <main>
-        <section id="live-plants" class="content-section active">
-            <div class="search-container">
-                <input type="text" placeholder="Search for plants...">
-                <button>Search</button>
-            </div>
-            <div class="plant-cards-container">
-                <div class="plant-card clickable-card">
-                    <img src="imgg1.webp" alt="Aloe Vera">
-                    <h3>Aloe Vera</h3>
-                    <div class="price">₹199</div>
-                    <div class="description">A hardy succulent, great for skincare.</div>
-                    <div class="rescue-timer">
-                        <span class="timer-icon">&#x23F0;</span>
-                        <span>Rescue now</span>
-                    </div>
-                    <div class="controls">
-                        <button onclick="changeQty('qty1', -1)" class="qty-btn minus">-</button>
-                        <span id="qty1" class="qty-display">0</span>
-                        <button onclick="changeQty('qty1', 1)" class="qty-btn plus">+</button>
-                        <button class="rescue-btn">Rescue</button>
-                    </div>
-                </div>
-                <div class="plant-card">
-                    <img src="imgg2.jpg" alt="Snake Plant">
-                    <h3>Snake Plant</h3>
-                    <div class="price">₹249</div>
-                    <div class="description">Air-purifying and incredibly low-maintenance.</div>
-                    <div class="rescue-timer">
-                        <span class="timer-icon">&#x23F0;</span>
-                        <span>Rescue now</span>
-                    </div>
-                    <div class="controls">
-                        <button onclick="changeQty('qty2', -1)" class="qty-btn minus">-</button>
-                        <span id="qty2" class="qty-display">0</span>
-                        <button onclick="changeQty('qty2', 1)" class="qty-btn plus">+</button>
-                        <button class="rescue-btn">Rescue</button>
-                    </div>
-                </div>
-                <div class="plant-card">
-                    <img src="imgg3.avif" alt="Peace Lily">
-                    <h3>Peace Lily</h3>
-                    <div class="price">₹299</div>
-                    <div class="description">Elegant white blooms and glossy leaves.</div>
-                    <div class="rescue-timer">
-                        <span class="timer-icon">&#x23F0;</span>
-                        <span>Rescue now</span>
-                    </div>
-                    <div class="controls">
-                        <button onclick="changeQty('qty3', -1)" class="qty-btn minus">-</button>
-                        <span id="qty3" class="qty-display">0</span>
-                        <button onclick="changeQty('qty3', 1)" class="qty-btn plus">+</button>
-                        <button class="rescue-btn">Rescue</button>
-                    </div>
-                </div>
-                <div class="plant-card">
-                    <img src="imgg4.jpg" alt="Money Plant">
-                    <h3>Money Plant</h3>
-                    <div class="price">₹179</div>
-                    <div class="description">Brings good fortune and purifies the air.</div>
-                    <div class="rescue-timer">
-                        <span class="timer-icon">&#x23F0;</span>
-                        <span>Rescue now</span>
-                    </div>
-                    <div class="controls">
-                        <button onclick="changeQty('qty4', -1)" class="qty-btn minus">-</button>
-                        <span id="qty4" class="qty-display">0</span>
-                        <button onclick="changeQty('qty4', 1)" class="qty-btn plus">+</button>
-                        <button class="rescue-btn">Rescue</button>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <!-- Category Navigation -->
+    <nav class="category-nav">
+        <div class="container">
+            <a href="#" data-category="live-plants" class="category-link active">🌱 Live Plants</a>
+            <a href="#" data-category="artificial-plants" class="category-link">🎨 Artificial Plants</a>
+            <a href="#" data-category="soil" class="category-link">🌍 Soil & Fertilizers</a>
+        </div>
+    </nav>
 
-        <section id="fertilizers" class="content-section">
-            <div class="plant-cards-container">
-                 <div class="plant-card">
-                    <img src="https://i.imgur.com/uEV9dFf.jpeg" alt="Liquid Fertilizer">
-                    <h3>All-Purpose Liquid Feed</h3>
-                    <div class="price">₹149</div>
-                    <div class="description">Quickly provides essential nutrients.</div>
-                    <div class="rescue-timer">
-                        <span class="timer-icon">&#x23F0;</span>
-                        <span>Buy now</span>
-                    </div>
-                    <div class="controls">
-                        <button onclick="changeQty('qty5', -1)" class="qty-btn minus">-</button>
-                        <span id="qty5" class="qty-display">0</span>
-                        <button onclick="changeQty('qty5', 1)" class="qty-btn plus">+</button>
-                        <button class="rescue-btn">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="pots-planters" class="content-section">
-            <div class="plant-cards-container">
-                <div class="plant-card">
-                    <img src="https://i.imgur.com/s4a3tFA.jpeg" alt="Terracotta Pot">
-                    <h3>Classic Terracotta Pot</h3>
-                    <div class="price">₹99</div>
-                    <div class="description">Porous clay allows roots to breathe.</div>
-                    <div class="rescue-timer">
-                        <span class="timer-icon">&#x23F0;</span>
-                        <span>Buy now</span>
-                    </div>
-                    <div class="controls">
-                        <button onclick="changeQty('qty6', -1)" class="qty-btn minus">-</button>
-                        <span id="qty6" class="qty-display">0</span>
-                        <button onclick="changeQty('qty6', 1)" class="qty-btn plus">+</button>
-                        <button class="rescue-btn">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="plant-guide" class="content-section">
-            <div class="guide-container">
-                <article class="blog-post">
-                    <h3>How often should I water my rescue plant?</h3>
-                    <p>There's no single answer! The best way is the "finger test." Stick your finger about an inch into the soil. If it feels dry, it's time to water. If it's damp, wait a few more days. Overwatering is the most common way to kill a houseplant, so it's better to be a little too dry than too wet.</p>
-                </article>
-                <article class="blog-post">
-                    <h3>What does "bright, indirect light" actually mean?</h3>
-                    <p>Imagine the spot where you can comfortably read a book during the day without needing a lamp. That's bright, indirect light. It's usually found near an east-facing window or a few feet back from a sunny south or west-facing window. Direct sunbeams can scorch the leaves of many indoor plants.</p>
-                </article>
-            </div>
-        </section>
+    <!-- Main Content -->
+    <main class="container page-content">
+        <h2 class="page-title" id="page-title">Live Plants</h2>
+        <div class="product-grid" id="product-grid">
+            <!-- Products will be loaded here -->
+        </div>
     </main>
 
-    <script src="explore.js"></script>
+    <!-- Cart Modal -->
+    <aside id="cart-modal" class="cart-modal">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button class="cart-close-btn" id="cart-close">&times;</button>
+        </div>
+        <div class="cart-items-container" id="cart-items-list">
+            <!-- Cart items will be loaded here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">Total: $<span id="cart-total">0.00</span></div>
+            <button id="checkout-btn">🛒 Checkout</button>
+        </div>
+    </aside>
+    <div id="cart-overlay" class="cart-overlay"></div>
+
+    <script src="{{ url_for('static', filename='explore.js') }}"></script>
 </body>
 </html>
