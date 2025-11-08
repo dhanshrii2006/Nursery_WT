@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | Nursery App</title>
-    <link rel="stylesheet" href="../static/styles.css">
     <style>
         body {
             display: flex;
@@ -12,6 +11,7 @@
             align-items: center;
             min-height: 100vh;
             background: linear-gradient(135deg, #f1f8f6 0%, #e8f5e9 100%);
+            font-family: Arial, sans-serif;
         }
         .container {
             background: white;
@@ -26,6 +26,12 @@
             text-align: center;
             margin-bottom: 30px;
         }
+        .error-message {
+            color: #c33;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
         .container label {
             display: block;
             margin-top: 15px;
@@ -39,6 +45,10 @@
             border: 1px solid #ddd;
             border-radius: 5px;
             font-size: 14px;
+            box-sizing: border-box;
+        }
+        .container input.error-input {
+            border-color: #c33;
         }
         .container button {
             width: 100%;
@@ -55,6 +65,10 @@
         .container button:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(27, 94, 32, 0.3);
+        }
+        .container button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
         }
         .container p {
             text-align: center;
@@ -73,26 +87,98 @@
 </head>
 <body>
     <div class="container">
-        <h2>User Login</h2>
-        <form onsubmit="handleLogin(event)">
+        <h2>🔐 User Login</h2>
+        
+        <form id="loginForm">
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="email">
+            <div id="emailError" class="error-message">Please enter a valid email</div>
 
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
+            <input type="password" id="password" name="password">
+            <div id="passwordError" class="error-message">Please enter your password</div>
 
-            <button type="submit">Login</button>
+            <button type="submit" id="submitBtn">Login</button>
         </form>
-        <p>Don't have an account? <a href="register.html">Register here</a></p>
-        <p><a href="index.html">← Back to Home</a></p>
+        
+        <p>Don't have an account? <a href="/register-page">Register here</a></p>
+        <p><a href="/">← Back to Home</a></p>
     </div>
 
     <script>
-        function handleLogin(event) {
-            event.preventDefault();
-            alert('✅ Login Successful! (Static Demo)');
-            window.location.href = 'index.html';
+        // Validate form
+        function validateForm(email, password) {
+            let isValid = true;
+            
+            // Reset errors
+            document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('input').forEach(el => el.classList.remove('error-input'));
+            
+            // Validate email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email || !emailRegex.test(email)) {
+                document.getElementById('emailError').style.display = 'block';
+                document.getElementById('email').classList.add('error-input');
+                isValid = false;
+            }
+            
+            // Validate password
+            if (!password || password.length < 1) {
+                document.getElementById('passwordError').style.display = 'block';
+                document.getElementById('password').classList.add('error-input');
+                isValid = false;
+            }
+            
+            return isValid;
         }
+        
+        // Handle login
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // Validate
+            if (!validateForm(email, password)) {
+                return;
+            }
+            
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Logging in...';
+            
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        password: password
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    alert(data.message);
+                    // Redirect to home page
+                    window.location.href = '/';
+                } else {
+                    alert(data.message);
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Login';
+                }
+                
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Login failed. Please try again.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Login';
+            }
+        });
     </script>
 </body>
 </html>

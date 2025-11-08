@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register | Nursery App</title>
-    <link rel="stylesheet" href="../static/styles.css">
     <style>
         body {
             display: flex;
@@ -13,6 +12,7 @@
             min-height: 100vh;
             background: linear-gradient(135deg, #f1f8f6 0%, #e8f5e9 100%);
             padding: 20px;
+            font-family: Arial, sans-serif;
         }
         .container {
             background: white;
@@ -26,6 +26,21 @@
             color: #1b5e20;
             text-align: center;
             margin-bottom: 30px;
+        }
+        .error-message {
+            color: #c33;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+        .success-message {
+            background: #efe;
+            color: #3c3;
+            padding: 12px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+            display: none;
         }
         .container label {
             display: block;
@@ -41,6 +56,10 @@
             border-radius: 5px;
             font-size: 14px;
             font-family: Arial, sans-serif;
+            box-sizing: border-box;
+        }
+        .container input.error-input {
+            border-color: #c33;
         }
         .container button {
             width: 100%;
@@ -57,6 +76,10 @@
         .container button:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(27, 94, 32, 0.3);
+        }
+        .container button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
         }
         .container p {
             text-align: center;
@@ -75,36 +98,134 @@
 </head>
 <body>
     <div class="container">
-        <h2>User Registration</h2>
-        <form onsubmit="handleRegister(event)">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
+        <h2>🌿 User Registration</h2>
+        
+        <div id="successMessage" class="success-message"></div>
+        
+        <form id="registerForm">
+            <label for="name">Name: *</label>
+            <input type="text" id="name" name="name">
+            <div id="nameError" class="error-message">Please enter your name</div>
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+            <label for="email">Email: *</label>
+            <input type="email" id="email" name="email">
+            <div id="emailError" class="error-message">Please enter a valid email</div>
 
             <label for="phone">Phone:</label>
             <input type="tel" id="phone" name="phone">
 
             <label for="address">Address:</label>
-            <textarea id="address" name="address"></textarea>
+            <textarea id="address" name="address" rows="3"></textarea>
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
+            <label for="password">Password: *</label>
+            <input type="password" id="password" name="password">
+            <div id="passwordError" class="error-message">Password must be at least 6 characters</div>
 
-            <button type="submit">Register</button>
+            <button type="submit" id="submitBtn">Register</button>
         </form>
-        <p>Already have an account? <a href="login.html">Login here</a></p>
-        <p><a href="index.html">← Back to Home</a></p>
+        
+        <p>Already have an account? <a href="/login-page">Login here</a></p>
+        <p><a href="/">← Back to Home</a></p>
     </div>
 
     <script>
-        function handleRegister(event) {
-            event.preventDefault();
-            const name = document.getElementById('name').value;
-            alert(`✅ Registration Successful! Welcome ${name}!`);
-            window.location.href = 'login.html';
+        // Form validation function
+        function validateForm(name, email, password) {
+            let isValid = true;
+            
+            // Reset errors
+            document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('input').forEach(el => el.classList.remove('error-input'));
+            
+            // Validate name
+            if (!name || name.trim().length < 2) {
+                document.getElementById('nameError').style.display = 'block';
+                document.getElementById('name').classList.add('error-input');
+                isValid = false;
+            }
+            
+            // Validate email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email || !emailRegex.test(email)) {
+                document.getElementById('emailError').style.display = 'block';
+                document.getElementById('email').classList.add('error-input');
+                isValid = false;
+            }
+            
+            // Validate password
+            if (!password || password.length < 6) {
+                document.getElementById('passwordError').style.display = 'block';
+                document.getElementById('password').classList.add('error-input');
+                isValid = false;
+            }
+            
+            return isValid;
         }
+        
+        // Handle form submission
+        document.getElementById('registerForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            const password = document.getElementById('password').value;
+            
+            // Validate on frontend
+            if (!validateForm(name, email, password)) {
+                return;
+            }
+            
+            // Disable submit button
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Registering...';
+            
+            try {
+                // Send data to Flask API
+                const response = await fetch('/api/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        phone: phone,
+                        address: address,
+                        password: password
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    // Show success message
+                    const successMsg = document.getElementById('successMessage');
+                    successMsg.textContent = data.message;
+                    successMsg.style.display = 'block';
+                    
+                    // Clear form
+                    document.getElementById('registerForm').reset();
+                    
+                    // Redirect to login after 2 seconds
+                    setTimeout(() => {
+                        window.location.href = '/login-page';
+                    }, 2000);
+                } else {
+                    alert(data.message);
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Register';
+                }
+                
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Registration failed. Please try again.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Register';
+            }
+        });
     </script>
 </body>
 </html>
